@@ -35,60 +35,64 @@ const Payment = () => {
     <Container>
 
       <CartNavBar locationCur={location.pathname} clickFn={viewProduct} routes={["cart","address",null]} />
+      { total > 0 ?
+        <div className="d-flex flex-column flex-md-row align-items-start justify-content-center gap-4 w-100 mb-5">
+          <div  style={{ flex: "0 0 70%" }} className="cart-left d-flex flex-column align-items-center justify-content-center gap-4 w-100">
+          {
+            Object.entries(cartData.cartData).map(([id,products]) =>{
+              
+              let productD = productData.find(ele =>ele.productId === id ) ;
 
-      <div className="d-flex flex-column flex-md-row align-items-start justify-content-center gap-4 w-100 mb-5">
-        <div  style={{ flex: "0 0 70%" }} className="cart-left d-flex flex-column align-items-center justify-content-center gap-4 w-100">
-        {
-          Object.entries(cartData.cartData).map(([id,products]) =>{
-            
-            let productD = productData.find(ele =>ele.productId === id ) ;
-
-            return Object.entries(products).map(([size,qty]) => (
-        
-            <CartDetails key={size+id} id = {id} productD={productD} size={size} qty={qty} display={false} />
-            ))
-            
-          })
+              return Object.entries(products).map(([size,qty]) => (
           
-        }
-        </div>
-
-        <div style={{ flex: "0 0 30%" }} className="cart-right d-flex flex-column align-items-start mt-2 gap-3 w-100">
-          <div className="w-100">
-            <h3>ADDRESS</h3>
-
-            <p>{cartData.userDetails.address}</p>
+              <CartDetails key={size+id} id = {id} productD={productD} size={size} qty={qty} display={false} />
+              ))
+              
+            })
+            
+          }
           </div>
 
-          <div className="w-100 ">
-            <h3>PRICE DETAILS</h3>
-              <div className="row w-100 mt-2">
-                <div className="col">
-                  <p>Total MRP</p>
-                  {/* <p>Discount</p> */}
-                  <p>Shipping</p>
-                  <br/>
-                  <h3>Total Amount</h3>
+          <div style={{ flex: "0 0 30%" }} className="cart-right d-flex flex-column align-items-start mt-2 gap-3 w-100">
+            <div className="w-100">
+              <h3>ADDRESS</h3>
+
+              <p>{cartData.userDetails.address}</p>
+            </div>
+
+            <div className="w-100 ">
+              <h3>PRICE DETAILS</h3>
+                <div className="row w-100 mt-2">
+                  <div className="col">
+                    <p>Total MRP</p>
+                    {/* <p>Discount</p> */}
+                    <p>Shipping</p>
+                    <br/>
+                    <h3>Total Amount</h3>
+                  </div>
+                  <div className="col text-end m-0 p-0 text-nowrap">
+                    <p>₹{total}</p>
+                    {/* <p>0</p> */}
+                    <p>₹{shipping}</p>
+                    <br/>
+                    <h3>₹{total+shipping}</h3>
+                  </div>
                 </div>
-                <div className="col text-end m-0 p-0 text-nowrap">
-                  <p>₹{total}</p>
-                  {/* <p>0</p> */}
-                  <p>₹{shipping}</p>
-                  <br/>
-                  <h3>₹{total+shipping}</h3>
-                </div>
-              </div>
-          </div>
+            </div>
 
-          <div className="w-100 mt-3">
-            <Button onClick={payNow} className="cartAddPayBtn w-100">
-                        PLACE ORDER
-            </Button>
-          </div>
+            <div className="w-100 mt-3">
+              <Button onClick={payNow} className="cartAddPayBtn w-100">
+                          PLACE ORDER
+              </Button>
+            </div>
 
+          </div>
+          
+        </div> : 
+        <div className="d-flex flex-column align-items-center justify-items-center mt-5">
+          <h3>YOUR BAG IS EMPTY : /</h3>
         </div>
-        
-      </div>
+      }
     </Container>
   );
 };

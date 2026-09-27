@@ -8,8 +8,7 @@ export function startProducteventStream(){
     });
 
     changeStream.on("change", (change) => {
-        console.log("Product changed:", change);
 
-        broadcastDbUpdates(change);
+        broadcastDbUpdates(change.fullDocument);
     });
 }

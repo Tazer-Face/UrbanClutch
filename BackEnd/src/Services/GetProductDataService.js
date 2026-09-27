@@ -12,7 +12,7 @@ class GetProductDataS{
             if ( !data || data.length === 0){
                 throw new AppError("No products found", 404);
             }
-            console.log(data)
+
             return data;
         }
         catch(err){

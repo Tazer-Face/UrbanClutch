@@ -2,7 +2,6 @@ import React,{useEffect, useState} from "react";
 import { Button, ButtonToolbar, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import Ferrari from "../../Assets/Products/CARD/Ferrari.png";
 import Accordion from "react-bootstrap/Accordion";
 import { useContext } from "react";
 import { ProductDataContext } from "../../App/Providers/ProductDataContext";

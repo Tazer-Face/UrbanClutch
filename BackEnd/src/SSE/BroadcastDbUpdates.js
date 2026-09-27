@@ -9,7 +9,14 @@ export function removeClient(user) {
 }
 
 export function broadcastDbUpdates(data){
+    console.log("Broadcasting:", data);
     for (const client of clients) {
-        client.write(`data: ${JSON.stringify(data)}\n\n`);
+
+        try{
+            client.write(`data: ${JSON.stringify(data)}\n\n`);
+        }catch(err){
+            removeClient(client)
+        }
+        
     }
 }

@@ -18,7 +18,7 @@ class CreateReservationDataS{
 
             session.startTransaction();
  
-            let cartData = Object.entries(orderData.cartData).map(([id,sizes])=>(
+            let cartData = Object.entries(orderData?.cartData).map(([id,sizes])=>(
                  { productId: id,
                     sizes}
             ))

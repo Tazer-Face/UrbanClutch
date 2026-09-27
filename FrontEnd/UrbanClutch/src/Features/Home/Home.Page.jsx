@@ -8,13 +8,17 @@ import ProductCarousel from '../../Shared/Components/ProductCarousel';
 import ProductCards from '../../Shared/Components/ProductCards';
 import { useProductNavigate } from '../../Shared/Hooks/useProductNavigate';
 import UrbanClutchLogo from "../../Assets/Products/CAROUSEL/UrbanClutchLogo.jpg"
-import Ferrari2 from "../../Assets/Products/CAROUSEL/Ferrari2.jpg"
 import Ferrari3 from "../../Assets/Products/CAROUSEL/Ferrari3.jpg"
-import Lambo2 from "../../Assets/Products/CAROUSEL/Lambo2.jpg"
+import Mazda3 from "../../Assets/Products/CAROUSEL/Mazda3.jpg"
+import Rexy3 from "../../Assets/Products/CAROUSEL/Rexy3.jpg"
+import Rexy4 from "../../Assets/Products/CAROUSEL/Rexy4.jpg"
+import Roxy5 from "../../Assets/Products/CAROUSEL/Roxy5.jpg"
+import Roxy6 from "../../Assets/Products/CAROUSEL/Roxy6.jpg"
+
 
 const Home = () => {
   
-  const carousel = [UrbanClutchLogo,Ferrari2,Ferrari3,Lambo2]
+  const carousel = [UrbanClutchLogo,Rexy3,Mazda3,Roxy6,Rexy4,Ferrari3,Roxy5]
   const {productData} = useContext(ProductDataContext)
   const navigate = useNavigate();
 
