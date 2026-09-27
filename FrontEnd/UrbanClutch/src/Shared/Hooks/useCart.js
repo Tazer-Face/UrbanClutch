@@ -10,16 +10,18 @@ const {setCartData} = useContext(ProductDataContext)
   
 
 function addUpdate(id, size) {
-  setCartData(prev => ({
-    ...prev,
-    cartData : {
-    ...prev.cartData,
-        [id]: {
-          ...prev.cartData[id],
-          [size]: (prev.cartData[id]?.[size] || 0) + 1
-        }
-    }
-  }));
+
+    setCartData(prev => ({
+      ...prev,
+      cartData : {
+      ...prev.cartData ,
+          [id]: {
+            ...prev.cartData?.[id],
+            [size]: (prev.cartData?.[id]?.[size] || 0) + 1
+          }
+      }
+    }));
+  
 }
 
 function updateUserDetails(data) {
