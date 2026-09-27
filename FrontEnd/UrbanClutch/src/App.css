@@ -23,7 +23,7 @@
   z-index: 10;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 767.98px) {
 
   .my-navbar {
     position: fixed;
@@ -32,11 +32,10 @@
     width: 100%;
     z-index: 1000;
     height : 80px;
-    
   }
 
-  .nav{
-    gap : 100px !important;
+  .footerMargin {
+    margin-bottom: 20px;
   }
 
 }
@@ -255,7 +254,7 @@
   }
 }
 
-/*Hide description lines*/1200
+/*Hide description lines*/
 
 
 .description {

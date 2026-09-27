@@ -14,6 +14,7 @@ import Rexy3 from "../../Assets/Products/CAROUSEL/Rexy3.jpg"
 import Rexy4 from "../../Assets/Products/CAROUSEL/Rexy4.jpg"
 import Roxy5 from "../../Assets/Products/CAROUSEL/Roxy5.jpg"
 import Roxy6 from "../../Assets/Products/CAROUSEL/Roxy6.jpg"
+import Footer from './Components/Footer';
 
 
 const Home = () => {
@@ -30,7 +31,8 @@ const Home = () => {
     navigate(`/viewProduct/${id}`);
   }
   return (
-    <Container className='mt-2 mb-5 custom-container'>
+    <>
+    <Container className='mt-2 custom-container'>
       <ProductCarousel arr={carousel} cssClass="carousel-image-container-home"/>
       <div className="Title">
         <h3 className="my-4 mt-3 mt-sm-5 ">PRODUCTS</h3>
@@ -46,7 +48,10 @@ const Home = () => {
           ))
         }
       </div>
+     
     </Container>
+    <Footer/>
+    </>
   )
 }
 
