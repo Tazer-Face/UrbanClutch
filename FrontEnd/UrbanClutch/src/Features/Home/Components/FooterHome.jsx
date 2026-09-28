@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import { useProductNavigate } from '../../../Shared/Hooks/useProductNavigate'
 
-const Footer = () => {
+const FooterHome = () => {
    const {viewProduct} = useProductNavigate()
   return (
     <div className="footerMargin" style={{backgroundColor:"#f5f5f5",width:"100%"}}>
@@ -44,4 +44,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default FooterHome
