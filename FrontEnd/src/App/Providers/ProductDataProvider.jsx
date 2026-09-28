@@ -3,6 +3,8 @@ import { ProductDataContext } from './ProductDataContext'
 
 import axios from 'axios'
 
+https://urbanclutch.onrender.com/
+
 
 const ProductDataProvider = ({children}) => {
 
@@ -11,7 +13,8 @@ const ProductDataProvider = ({children}) => {
     async function loadData(){
         let data;
         try{
-            data = await axios.get("http://localhost:3000/api/productData");
+            //data = await axios.get("http://localhost:3000/api/productData");
+            data = await axios.get("https://urbanclutch.onrender.com/api/productData");
             
             setProductData(data.data.data);
         }
@@ -48,7 +51,8 @@ const ProductDataProvider = ({children}) => {
         
         loadData();
 
-        const serverEvent = new EventSource("http://localhost:3000/api/events/products");
+        // const serverEvent = new EventSource("http://localhost:3000/api/events/products");
+        const serverEvent = new EventSource("https://urbanclutch.onrender.com/api/events/products");
 
         serverEvent.addEventListener("message",(res)=>{
             let data = JSON.parse(res.data)
