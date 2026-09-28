@@ -38,17 +38,24 @@ const Home = () => {
       <div className="Title">
         <h3 className="my-4 mt-3 mt-sm-5 ">PRODUCTS</h3>
       </div>
-      <div className="row g-5">
-        {
-          productData.map((ele)=>(
+      {
+        productData.length > 0 ?
+        <div className="row g-5">
+          {
+            productData.map((ele)=>(
 
-          <div className="col-12 px-3 col-sm-6 col-md-4 cardWidth" key={ele.productId}>
-          <ProductCards product={ele} navigatePage={()=>viewProduct("viewProduct",ele.productId)}/>
-          </div>
+            <div className="col-12 px-3 col-sm-6 col-md-4 cardWidth" key={ele.productId}>
+            <ProductCards product={ele} navigatePage={()=>viewProduct("viewProduct",ele.productId)}/>
+            </div>
 
-          ))
-        }
-      </div>
+            ))
+          }
+        </div> :
+        <div className="d-flex align-items-center justify-content-center">
+          <h3>NO PRODUCTS AVAILABLE</h3>
+        </div>
+      }
+      
      
     </Container>
     <FooterHome/>
