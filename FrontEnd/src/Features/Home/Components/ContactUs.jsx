@@ -45,7 +45,7 @@ const ContactUs = () => {
       </p>
       <br></br>
       <h5>
-        <img src="/LogoBlack.png" alt="Logo" style={{width:"90px",height:"auto",marginLeft:"-15px"}}/>
+        <img src="Icons/LogoBlack.png" alt="Logo" style={{width:"90px",height:"auto",marginLeft:"-15px"}}/>
         <p className="mt-2">Built by Petrolheads. Driven by Passion.</p>
       </h5>
       <br></br>

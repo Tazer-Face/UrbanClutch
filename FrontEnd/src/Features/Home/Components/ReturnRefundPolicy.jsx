@@ -343,7 +343,7 @@ const ReturnRefundPolicy = () => {
 
       <p className="fw-bold">
         <img
-          src="/LogoBlack.png"
+          src="Icons/LogoBlack.png"
           alt="Logo"
           style={{
             width: "90px",

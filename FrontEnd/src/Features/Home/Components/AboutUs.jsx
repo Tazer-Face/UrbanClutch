@@ -49,7 +49,7 @@ const AboutUs = () => {
         represents the people who live and breathe automotive culture. Welcome
         to UrbanClutch.
       </p>
-      <h5>Welcome to <img src="/LogoBlack.png" alt="Logo" style={{width:"50px",height:"auto"}}/></h5>
+      <h5>Welcome to <img src="Icons/LogoBlack.png" alt="Logo" style={{width:"50px",height:"auto"}}/></h5>
       <br></br>
     </Container>
   );
