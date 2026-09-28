@@ -7,13 +7,13 @@ import { ProductDataContext } from '../../App/Providers/ProductDataContext';
 import ProductCarousel from '../../Shared/Components/ProductCarousel';
 import ProductCards from '../../Shared/Components/ProductCards';
 import { useProductNavigate } from '../../Shared/Hooks/useProductNavigate';
-import UrbanClutchLogo from "../../Assets/Products/CAROUSEL/UrbanClutchLogo.jpg"
-import Ferrari3 from "../../Assets/Products/CAROUSEL/Ferrari3.jpg"
-import Mazda3 from "../../Assets/Products/CAROUSEL/Mazda3.jpg"
-import Rexy3 from "../../Assets/Products/CAROUSEL/Rexy3.jpg"
-import Rexy4 from "../../Assets/Products/CAROUSEL/Rexy4.jpg"
-import Roxy5 from "../../Assets/Products/CAROUSEL/Roxy5.jpg"
-import Roxy6 from "../../Assets/Products/CAROUSEL/Roxy6.jpg"
+const UrbanClutchLogo = "/Products/CAROUSEL/UrbanClutchLogo.jpg"
+const Ferrari3 = "/Products/CAROUSEL/Ferrari3.jpg"
+const Mazda3  = "/Products/CAROUSEL/Mazda3.jpg"
+const Rexy3= "/Products/CAROUSEL/Rexy3.jpg"
+const Rexy4 = "/Products/CAROUSEL/Rexy4.jpg"
+const Roxy5 = "/Products/CAROUSEL/Roxy5.jpg"
+const Roxy6 = "/Products/CAROUSEL/Roxy6.jpg"
 import Footer from './Components/Footer';
 
 
