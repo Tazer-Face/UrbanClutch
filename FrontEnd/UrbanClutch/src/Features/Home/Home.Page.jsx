@@ -7,7 +7,7 @@ import { ProductDataContext } from '../../App/Providers/ProductDataContext';
 import ProductCarousel from '../../Shared/Components/ProductCarousel';
 import ProductCards from '../../Shared/Components/ProductCards';
 import { useProductNavigate } from '../../Shared/Hooks/useProductNavigate';
-import Footer from './Components/Footer';
+import FooterHome from './Components/FooterHome';
 
 const UrbanClutchLogo = "/Products/CAROUSEL/UrbanClutchLogo.jpg"
 const Ferrari3 = "/Products/CAROUSEL/Ferrari3.jpg"
@@ -51,7 +51,7 @@ const Home = () => {
       </div>
      
     </Container>
-    <Footer/>
+    <FooterHome/>
     </>
   )
 }
