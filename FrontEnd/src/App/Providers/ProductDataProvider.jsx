@@ -3,9 +3,6 @@ import { ProductDataContext } from './ProductDataContext'
 
 import axios from 'axios'
 
-https://urbanclutch.onrender.com/
-
-
 const ProductDataProvider = ({children}) => {
 
     const [productData,setProductData] = useState([])
