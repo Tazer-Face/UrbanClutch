@@ -14,16 +14,22 @@ const ProductView = () => {
   const { productData} = useContext(ProductDataContext);
 
   let curProducData = productData.filter((ele) => ele.productId === id)[0];
-
+  
 
   return (
     <Container className="mb-4">
-      <div className="row gx-5">
-        <div className="col-12 col-xl-8 mt-3">
-          <ProductCarousel  arr={curProducData.productCarasoleImage} cssClass="carousel-image-container" />
+      { productData && productData.length > 0   ?
+        <div className="row gx-5">
+          <div className="col-12 col-xl-8 mt-3">
+            <ProductCarousel  arr={curProducData.productCarasoleImage} cssClass="carousel-image-container" />
+          </div>
+          <ProductDetails curProducData={curProducData}/>
+        </div> :
+        <div className="d-flex flex-column align-items-center justify-content-center w-100 vh-100">
+          <h2>LOADING..</h2>
         </div>
-        <ProductDetails curProducData={curProducData}/>
-      </div>
+        
+      }
     </Container>
   );
 };

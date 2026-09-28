@@ -41,13 +41,13 @@ const ProductDetails = ({curProducData}) => {
   return (
     <div className="col-12 col-xl-4  mt-5 mt-xl-2 d-flex align-items-start mt-3 mb-3">
           <div className="d-flex flex-column w-100 h-100 gap-3 justify-content-start mt-1">
-            <h3 className="fw-bold">{curProducData.productTitle}</h3>
+            <h3 className="fw-bold">{curProducData?.productTitle}</h3>
 
-            <h5>{curProducData.productDescription}Regular Fit cotton bio-washed premium Tshirt</h5>
+            <h5>{curProducData?.productDescription}Regular Fit cotton bio-washed premium Tshirt</h5>
 
             <div className="border-top border-secondary"></div>
 
-            <h2 className="fw-bold">₹{curProducData.productPrice}</h2>
+            <h2 className="fw-bold">₹{curProducData?.productPrice}</h2>
             
             
             <div className="d-flex flex-row gap-3 align-items-center justify-content-between">

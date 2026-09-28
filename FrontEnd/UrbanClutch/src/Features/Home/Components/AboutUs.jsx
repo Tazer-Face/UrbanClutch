@@ -50,6 +50,7 @@ const AboutUs = () => {
         to UrbanClutch.
       </p>
       <h5>Welcome to <img src="/LogoBlack.png" alt="Logo" style={{width:"50px",height:"auto"}}/></h5>
+      <br></br>
     </Container>
   );
 };

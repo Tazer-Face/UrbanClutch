@@ -15,11 +15,11 @@ const NavBar = () => {
         <Container >
             <Nav className="d-flex flex-row align-items-center flex-nowrap justify-content-between gap-3 gap-md-4 w-100 p-2 nav" >
               <a href="https://www.instagram.com/urbanclutch_/" target="_blank" rel="noopener noreferrer">
-                <img src="/Instagram.png" alt="Instagram"style={{ width: "35px", height: "35px" }}/>
+                <img src="/Icons/Instagram.png" alt="Instagram"style={{ width: "35px", height: "35px" }}/>
               </a>
-              <Nav.Link as={Link} to="/home"><img src="/Home.png" alt="Home" style={{ width: '35px', height: '35px' }} /></Nav.Link>
+              <Nav.Link as={Link} to="/home"><img src="/Icons/Home.png" alt="Home" style={{ width: '35px', height: '35px' }} /></Nav.Link>
               <div className="position-relative">
-              <Nav.Link as={Link} to="/cart"><img src="/Cart.png" alt="Cart" style={{ width: '35px', height: '35px' }} /></Nav.Link>
+              <Nav.Link as={Link} to="/cart"><img src="/Icons/Cart.png" alt="Cart" style={{ width: '35px', height: '35px' }} /></Nav.Link>
                 {/* <span className="position-absolute top-0 translate-middle badge rounded-pill " style={{ right: "-10px" }}>
                     3
                 </span> */}
