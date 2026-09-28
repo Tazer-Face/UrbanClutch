@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../Shared/Components/Header.jsx'
-import Footer from '../shared/components/Footer.jsx'
+import Footer from '../shared/Components/Footer.jsx'
 import { Outlet } from 'react-router-dom'
 
 const MainLayout = () => {
