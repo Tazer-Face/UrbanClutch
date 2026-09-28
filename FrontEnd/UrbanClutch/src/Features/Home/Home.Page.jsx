@@ -7,6 +7,8 @@ import { ProductDataContext } from '../../App/Providers/ProductDataContext';
 import ProductCarousel from '../../Shared/Components/ProductCarousel';
 import ProductCards from '../../Shared/Components/ProductCards';
 import { useProductNavigate } from '../../Shared/Hooks/useProductNavigate';
+import Footer from './Components/Footer';
+
 const UrbanClutchLogo = "/Products/CAROUSEL/UrbanClutchLogo.jpg"
 const Ferrari3 = "/Products/CAROUSEL/Ferrari3.jpg"
 const Mazda3  = "/Products/CAROUSEL/Mazda3.jpg"
@@ -14,7 +16,6 @@ const Rexy3= "/Products/CAROUSEL/Rexy3.jpg"
 const Rexy4 = "/Products/CAROUSEL/Rexy4.jpg"
 const Roxy5 = "/Products/CAROUSEL/Roxy5.jpg"
 const Roxy6 = "/Products/CAROUSEL/Roxy6.jpg"
-import Footer from './Components/Footer';
 
 
 const Home = () => {
