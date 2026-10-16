@@ -17,16 +17,16 @@ const OrdersPage = () => {
                 
                     <li key={ele._id}>
                         <div  className="d-flex flex-columns align-items-center justify-content-start gap-5 Orders cartCheckoutMedia mt-4">    
-                            <div className="d-flex flex-column align-items-start justify-content-start gap-3 ">
-                                <div className="d-flex align-items-start justify-content-start gap-2 ">
+                            <div className="d-flex flex-column align-items-start justify-content-start gap-4 ">
+                                <div className="d-flex flex-column align-items-start justify-content-start gap-2 ">
                                     <h6 className="mb-0 m-0 text-nowrap">ORDER ID : </h6>
                                     <p className="m-0 text-break">{ele._id}</p>
                                 </div>
-                                <div className="d-flex align-items-start justify-content-start gap-2 ">
+                                <div className="d-flex flex-column align-items-start justify-content-start gap-2 ">
                                     <h6 className='m-0'>STATUS : </h6>
                                     <p className='m-0'>{ele.status}</p>
                                 </div>
-                                <div className="d-flex align-items-start justify-content-start gap-2 ">
+                                <div className="d-flex flex-column align-items-start justify-content-start gap-2 ">
                                     <h6 className='m-0'>ORDER PLACED AT : </h6>
                                     <p className='m-0'>{new Date(ele.createdAt).toLocaleString("en-IN", 
                                                         {
@@ -34,7 +34,7 @@ const OrdersPage = () => {
                                                         })}
                                     </p>
                                 </div>
-                                <div className="d-flex align-items-start justify-content-start gap-2 ">
+                                <div className="d-flex flex-column align-items-start justify-content-start gap-2 ">
                                     <h6 className='m-0'>TOTAL AMOUNT : </h6>
                                     <p className='m-0'>₹ {ele.Total}</p>
                                 </div>
