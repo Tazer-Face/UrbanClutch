@@ -1,17 +1,33 @@
 import { useContext } from "react";
 import { ProductDataContext } from "../../../App/Providers/ProductDataContext";
 import axios from 'axios'
+import { useProductNavigate } from "../../../Shared/Hooks/useProductNavigate";
 
 export function useCreateOrderReq(){
 
-    const { cartData } = useContext(ProductDataContext);
+    const { userData ,user} = useContext(ProductDataContext);
+    const {viewProduct} = useProductNavigate();
 
     async function createNewOrder(){
         
-
-        let res = await axios.post("http://localhost:3000/api/orderData",cartData)
+        try{
+            let token = await user.getIdToken();
+            //http://localhost:3000/api/orderData  
+            let res = await axios.post("https://urbanclutch.onrender.com/api/orderData",userData,{
+            headers : {
+                Authorization : `Bearer ${token}`,
+                'Content-Type' : 'application/json'
+            }
+        })
 
         return res;
+
+        }catch(err){
+            console.error(err)
+            alert(err.response.data.message)
+            viewProduct("cart")
+        }
+        
     }
 
     return {createNewOrder}

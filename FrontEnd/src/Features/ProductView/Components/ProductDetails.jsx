@@ -10,7 +10,7 @@ import { useDisableSize } from "../Hooks/useDisableSize";
 
 const ProductDetails = ({curProducData}) => {
 
-  const { cartData ,productData } = useContext(ProductDataContext);
+  const { userData ,productData } = useContext(ProductDataContext);
   const [size, setSize] = useState("");
   const {disbaleSize,sizeAva} = useDisableSize();
   const {addUpdate} = useCart();
@@ -23,7 +23,7 @@ const ProductDetails = ({curProducData}) => {
       return;
     }
 
-    curcartData = cartData?.cartData?.[curProducData.productId]?.[size];
+    curcartData = userData?.cart?.[curProducData.productId]?.[size];
     curcartData === undefined ? addUpdate(curProducData.productId,size) : null;
   }
  

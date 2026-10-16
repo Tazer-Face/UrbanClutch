@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { ProductDataContext } from "../../../App/Providers/ProductDataContext";
-import { delayFnExe } from "../Utils/delayFnExe";
 
 export function useDeleteItem(){
-    const { setCartData , cartData} = useContext(ProductDataContext);
+    const { setUserData} = useContext(ProductDataContext);
     
 
     function deleteItem(id,size){
@@ -11,18 +10,18 @@ export function useDeleteItem(){
         
         if (confirm("Remove this item from your cart?")) {
 
-            setCartData(prev =>{
+            setUserData(prev =>{
             
-            const {[size]:remove , ...remaining} = prev.cartData[id]
+            const {[size]:remove , ...remaining} = prev.cart[id]
                 if(Object.keys(remaining).length === 0){
-                    const updated = { ...prev.cartData };
+                    const updated = { ...prev.cart };
                     delete updated[id];
                     return {
                         ...prev,
-                        cartData: updated
+                        cart: updated
                     };
                 }
-            return {...prev,cartData :{...prev.cartData,[id]: remaining }}
+            return {...prev,cart :{...prev.cart,[id]: remaining }}
             })
         }
     }

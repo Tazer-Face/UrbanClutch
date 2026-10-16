@@ -11,4 +11,17 @@ export default class ReservationDataAbs {
     getReservation(){
         throw new Error("Not implemented");
     }
+
+    updateReservation(){
+        throw new Error("Not implemented");
+    }
+
+    updateManyReservation(){
+        throw new Error("Not implemented");
+    }
+
+    // getAllReservations(){
+    //     throw new Error("Not implemented");
+    // }
+
 }

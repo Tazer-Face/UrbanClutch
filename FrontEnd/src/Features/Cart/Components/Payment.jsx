@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { useProductNavigate } from "../../../Shared/Hooks/useProductNavigate";
@@ -8,38 +8,60 @@ import { ProductDataContext } from "../../../App/Providers/ProductDataContext";
 import CartDetails from "../../../Shared/Components/CartDetails";
 import {useCreateOrderReq} from "../Hooks/useCreateOrderReq.js"
 import {useCreateRazerpayCheckout} from "../Hooks/useCreateRazerpayCheckout.js"
+import { useVerifyPayment } from "../Hooks/useVerifyPayment.js";
+import { useCheckUpdateItem } from "../Hooks/useCheckUpdateItem.js";
 
 const Payment = () => {
 
+    
     const location = useLocation();
     const {viewProduct} = useProductNavigate();
-    const { productData,cartData ,total ,shipping} = useContext(ProductDataContext);
+    const { productData,userData ,total ,shipping ,orders ,loadingPayment ,disable,setDisable} = useContext(ProductDataContext);
     const {createNewOrder} = useCreateOrderReq();
     const {createCheckout} = useCreateRazerpayCheckout();
+    const {verifyPayment} = useVerifyPayment();
+    const {syncServerData} = useCheckUpdateItem();
    
     async function payNow(){
+      setDisable(true);
       try{
         let res = await createNewOrder();
-        console.log(res);
-        let rzp = createCheckout(res);
+        let rzp = createCheckout(res.data.data,verifyPayment);
+
+        rzp.on('payment.failed', function (response) {
+          setDisable(false);
+          console.log("Payment failed : ",response);
+          alert("Payment failed")
+        });
+
+        rzp.on()
+
         rzp.open();
+        
       }
       catch(err){
+        setDisable(false);
         alert("Unable to place your order at the moment , please try again later.")
         console.error("Unable to place order",err)
       }
       
     }
 
+  // useEffect(()=>{
+  //   console.log(userData.cart)
+  //   syncServerData();
+  // },[productData])
+
   return (
     <Container>
 
       <CartNavBar locationCur={location.pathname} clickFn={viewProduct} routes={["cart","address",null]} />
       { total > 0 ?
+        !loadingPayment ?
         <div className="d-flex flex-column flex-md-row align-items-start justify-content-center gap-4 w-100 mb-5">
           <div  style={{ flex: "0 0 70%" }} className="cart-left d-flex flex-column align-items-center justify-content-center gap-4 w-100">
           {
-            Object.entries(cartData.cartData).map(([id,products]) =>{
+            Object.entries(userData.cart).map(([id,products]) =>{
               
               let productD = productData.find(ele =>ele.productId === id ) ;
 
@@ -57,7 +79,7 @@ const Payment = () => {
             <div className="w-100">
               <h3>ADDRESS</h3>
 
-              <p>{cartData.userDetails.address}</p>
+              <p>{userData.userDetails.Address}</p>
             </div>
 
             <div className="w-100 ">
@@ -81,14 +103,19 @@ const Payment = () => {
             </div>
 
             <div className="w-100 mt-3">
-              <Button onClick={payNow} className="cartAddPayBtn w-100">
+              <Button disabled={disable} onClick={payNow} className="cartAddPayBtn w-100">
                           PLACE ORDER
               </Button>
             </div>
 
           </div>
           
-        </div> : 
+        </div> :  
+        <div className="d-flex flex-column align-items-center justify-items-center mt-5 vh-100">
+          <h3>Please wait while we verify your payment...</h3>
+        </div>
+
+         : 
         <div className="d-flex flex-column align-items-center justify-items-center mt-5">
           <h3>YOUR BAG IS EMPTY : /</h3>
         </div>

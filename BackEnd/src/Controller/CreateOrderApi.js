@@ -6,8 +6,12 @@ export class CreateOrder {
 
     async addOrder(req,res,next){
         try{
+ 
+          let userData = {userObj : req.user , userDetails : req.body || {}};
           
-          const data = await this.service.createOrder(req.body);
+          const data = await this.service.createOrder(userData);
+
+          
             
             res.status(201).send({success:true,data: data ,message:"Order placed successfully"})
         }

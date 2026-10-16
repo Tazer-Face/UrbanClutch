@@ -12,15 +12,15 @@ export function useCheckUpdateItem(){
 
     let delayAlert = delay(setMessage,500);
 
-    const { productData, setCartData ,cartData} = useContext(ProductDataContext);
+    const { productData, setUserData ,userData} = useContext(ProductDataContext);
 
     function checkUpdateQty(id,size,curQty,operation){
       let product = productData.find(ele => ele.productId === id)
       if(product.inventory[size] >= curQty && operation === "add"){
-        setCartData(prev =>({...prev,cartData : {...prev.cartData ,[id]:{...prev.cartData[id],[size]:curQty}}}))
+        setUserData(prev =>({...prev,cart : {...prev.cart ,[id]:{...prev.cart[id],[size]:curQty}}}))
       }
       else if(curQty > 0 && operation === "sub"){
-        setCartData(prev =>({...prev,cartData : {...prev.cartData ,[id]:{...prev.cartData[id],[size]:curQty}}}))
+        setUserData(prev =>({...prev,cart : {...prev.cart ,[id]:{...prev.cart[id],[size]:curQty}}}))
       }
       else if(operation === "add"){
         (delayAlert)()
@@ -30,25 +30,25 @@ export function useCheckUpdateItem(){
     function syncServerData(){
       
      let flag = false;
-     Object.entries(cartData.cartData ?? {}).map(([id,products]) =>{
+     Object.entries(userData.cart ?? {}).map(([id,products]) =>{
             
-            //let productD = productData.find(ele =>ele.productId === id ) ;
+            
             return Object.entries(products).map(([size,qty]) => {
               
             let product = productData.find(ele => ele.productId === id)
-            let curQantitiy = product.inventory[size];
+            let curQantitiy = product?.inventory[size];
 
             if(curQantitiy < qty && curQantitiy !== 0){
-              setCartData(prev =>({...prev,cartData : {...prev.cartData ,[id]:{...prev.cartData[id],[size]:curQantitiy}}}))
+              setUserData(prev =>({...prev,cart : {...prev.cart ,[id]:{...prev.cart[id],[size]:curQantitiy}}}))
               flag = true;
             }
             else if(curQantitiy === 0 ){
               
 
-              setCartData(prev => {
-                let delUpdate = {...prev.cartdata};
+              setUserData(prev => {
+                let delUpdate = {...prev.cart};
                 delete delUpdate[id]
-                return delUpdate;
+                return {...prev,cart:delUpdate};
               })
 
               flag = true;

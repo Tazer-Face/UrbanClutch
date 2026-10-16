@@ -24,7 +24,7 @@ class CalculateToTalS{
                 return new AppError("Reservation doesnt exist",404,data);
             }
 
-
+        
             let ids = data[0].OrderDetails.map(({productId,sizes})=>(
                 productId
             )
@@ -43,6 +43,7 @@ class CalculateToTalS{
             if(!products || products.length === 0){
                 return new AppError("products dont exist",404,data);
             }
+
 
             let TotalPrice = products.map( prod =>({
                 price : prod.productPrice , quant : qunatity.find(ele => ele.productId === prod.productId ).quantity

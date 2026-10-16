@@ -1,87 +1,97 @@
 import mongoose from 'mongoose';
 
-const OrdersSchema = new mongoose.Schema({
+const OrdersSchema = new mongoose.Schema(
+    {
+        FirebaseUid :{
+            type: String,
+            required: true
+        },
 
-    Name: {
-        type: String,
-        required: true
-    },
+        RazorPayOrderId : {
+            type: String,
+            required: true,
+            unique : true
+        },
 
-    Address: {
-        type: String,
-        required: true
-    },
+        Total : Number,
 
-    State: {
-        type: String,
-        required: true
-    },
+        UserData : {
+            
+            Name : {
+                type: String,
+                required: true
+            },
 
-    City: {
-        type: String,
-        required: true
-    },
+            Address : {
+                type: String,
+                required: true
+            },
 
-    PinCode: {
-        type: String,
-        required: true,
-        match: /^\d{6}$/
-    },
+            State : {
+                type: String,
+                required: true
+            },
 
-    Email: {
-        type: String,
-        required: true,
-        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    },
+            City : {
+                type: String,
+                required: true
+            },
 
-    OrderDetails: {
-        type: [
-            {
-                productId: {
-                     type: String,
-                    required: true
-                },
+            PinCode: {
+                type: String,
+                required: true,
+                match: /^\d{6}$/
+            },
 
-                sizes: {
-                    S: {
-                        type: Number,
-                        default: 0,
-                        min: 0
+            Email: {
+                type: String,
+                match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            },
+            PhoneNo: {
+                type: String,
+                required: true,
+                match: /^\d{10}$/
+            }
+        },
+
+        OrderDetails: {
+            type: [
+                {
+                    productId: {
+                        type: String,
+                        required: true
                     },
-                    M: {
-                        type: Number,
-                        default: 0,
-                        min: 0
-                    },
-                    L: {
-                        type: Number,
-                        default: 0,
-                        min: 0
+
+                    sizes: {
+                        S: {
+                            type: Number,
+                            min: 0
+                        },
+                        M: {
+                            type: Number,
+                            min: 0
+                        },
+                        L: {
+                            type: Number,
+                            min: 0
+                        }
                     }
                 }
-            }
-        ],
-        default: []
-    },
+            ],
+            default: []
+        }  
 
-    PhoneNo: {
-        type: String,
-        required: true,
-        match: /^\d{10}$/
-    }
-
-    ,
-    status: {
-            type: String,
-            enum: ["Received","Confirmed", "Packed", "InTransit", "OutForDelivery" , "Delivered"],
-            default: "Received"
+        ,
+        status: {
+                type: String,
+                enum: ["Received","Confirmed", "Packed", "InTransit", "OutForDelivery" , "Delivered"],
+                default: "Received"
+        },
     },
-    paymentStatus: {
-        type: String,
-        enum: ["Pending", "Paid", "Failed"],
-        default: "Pending"
+    {
+        timestamps: true
     }
-});
+);
 
 
 export default mongoose.model('Order', OrdersSchema);

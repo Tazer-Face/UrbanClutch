@@ -2,6 +2,7 @@ import { AppError } from "../../Utils/ErrorClass.js";
 import mongoose from "mongoose";
 
 class CreateReservationDataS{
+    
     constructor(userRepository1, userRepository2){
         this.userRepository1 = userRepository1;
         this.userRepository2 = userRepository2;
@@ -18,7 +19,7 @@ class CreateReservationDataS{
 
             session.startTransaction();
  
-            let cartData = Object.entries(orderData?.cartData).map(([id,sizes])=>(
+            let cartData = Object.entries(orderData?.userDetails.cart).map(([id,sizes])=>(
                  { productId: id,
                     sizes}
             ))
@@ -49,14 +50,18 @@ class CreateReservationDataS{
             
 
             if (operations.length !== updateProduct.modifiedCount) {
-                throw new AppError("Failed to update product inventory", 500,updateProduct);
+                throw new AppError("Some products in your cart are sold out , unable to process your order.", 500,updateProduct);
             }
-            
 
-            let createReservation = await this.userRepository2.createReservation({
+
+            let resData = {
+                FirebaseUid : orderData.userObj.uid,
+                UserDetails : orderData.userDetails.userDetails,
                 OrderDetails: cartData,
-                expiresAt: new Date(Date.now() + 15 * 60 * 1000) // 15 minutes from now
-            },{session});
+                expiresAt: new Date(Date.now() +  10 * 60 * 1000) // 10 minutes from now
+            }
+
+            let createReservation = await this.userRepository2.createReservation([resData],{session});
 
             if( !createReservation ){
                 throw new AppError("Reservation not created", 500 ,createReservation);

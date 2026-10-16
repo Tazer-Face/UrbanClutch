@@ -9,7 +9,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .header-logo {
@@ -167,6 +167,16 @@
     font-weight: bold;
 }
 
+.cartAddSaveBtn{
+    background-color: #07ef64;
+    border-color :  #ffffff;
+    color: #ffffff;
+    height: 60px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .cartAddPayBtn:disabled{
     background-color: #ff527b;
     border-color :  #ffffff;
@@ -183,6 +193,14 @@
     background-color:#fa2658 !important;
     border-color: #ffffff !important;
 }
+
+.cartAddSaveBtn:hover,
+.cartAddSaveBtn:focus,
+.cartAddSaveBtn:active {
+    background-color:#47fa6e !important;
+    border-color: #ffffff !important;
+}
+
 
 
 
@@ -281,4 +299,33 @@
     .cart-right {
         flex: 0 0 35% !important;
     }
+}
+
+/*Sign up/in*/
+
+.signUpLogin:hover{
+  color : blue;
+}
+
+.reset:hover{
+  color : rgb(251, 7, 7);
+}
+
+
+
+#hamburger-menu::after {
+    display: none;
+}
+
+/*Orders List*/
+
+ol {
+  list-style-type: decimal;
+}
+
+.Orders{
+    border-radius: 5px;
+    border: 1px solid #eeecec;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }

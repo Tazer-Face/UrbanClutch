@@ -1,23 +1,21 @@
-import { useCol } from "react-bootstrap/esm/Col";
 import { ProductDataContext } from "../../App/Providers/ProductDataContext";
 import { useContext } from "react";
-import { useProductNavigate } from "./useProductNavigate";
 
 export function useCart(){
 
-const {setCartData} = useContext(ProductDataContext)
+const {setUserData} = useContext(ProductDataContext)
 
   
 
 function addUpdate(id, size) {
 
-    setCartData(prev => ({
+    setUserData(prev => ({
       ...prev,
-      cartData : {
-      ...prev.cartData ,
+      cart : {
+      ...prev.cart ,
           [id]: {
-            ...prev.cartData?.[id],
-            [size]: (prev.cartData?.[id]?.[size] || 0) + 1
+            ...prev.cart?.[id],
+            [size]: (prev.cart?.[id]?.[size] || 0) + 1
           }
       }
     }));
@@ -25,7 +23,7 @@ function addUpdate(id, size) {
 }
 
 function updateUserDetails(data) {
-  setCartData(prev => ({
+  setUserData(prev => ({
     ...prev,
     userDetails : data
   }));

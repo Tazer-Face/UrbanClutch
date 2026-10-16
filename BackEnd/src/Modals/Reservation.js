@@ -2,7 +2,54 @@ import mongoose from "mongoose";
 
 const reservationSchema = new mongoose.Schema(
     {
-       
+        FirebaseUid : {
+            type: String,
+            required: true
+        },
+
+        RazorPayOrderId :  String,
+        
+        Total : Number,
+
+        UserDetails : {
+        
+            Name : {
+                type: String,
+                required: true
+            },
+
+            Address : {
+                type: String,
+                required: true
+            },
+
+            State : {
+                type: String,
+                required: true
+            },
+
+            City : {
+                type: String,
+                required: true
+            },
+
+            PinCode: {
+                type: String,
+                required: true,
+                match: /^\d{6}$/
+            },
+
+            Email: {
+                type: String,
+                match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            },
+            PhoneNo: {
+                type: String,
+                required: true,
+                match: /^\d{10}$/
+            }
+        },
+
         OrderDetails: {
         type: [
             {
@@ -33,11 +80,50 @@ const reservationSchema = new mongoose.Schema(
         expiresAt: {
             type: Date,
             required: true
+        },
+
+        state : {
+            type : String,
+            enum: ["Active","Claimed", "Closed","Rejected","Verify"],
+            default: "Active"
+        },
+
+        claimId : String,
+
+        claimExpiresAt : {
+            type: Date
+        },
+
+        payment : {
+            type : String,
+            enum: ["Success","Failure",""],
+            default: ""
         }
+
     },
     {
         timestamps: true
     }
+);
+
+reservationSchema.index(
+  { FirebaseUid: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      state: "Active"
+    }
+  }
+);
+
+reservationSchema.index(
+  { RazorPayOrderId: 1 }, 
+  {
+    unique: true, 
+    partialFilterExpression: {
+      RazorPayOrderId: { $type: "string" }
+    }
+  }
 );
 
 export default mongoose.model(

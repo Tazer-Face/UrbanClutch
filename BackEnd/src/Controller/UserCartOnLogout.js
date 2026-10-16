@@ -1,0 +1,19 @@
+export class UpdateUserDetailsOnLogout{
+    constructor(service1){
+        this.service1 = service1;
+    }
+
+    async updateUserDetails(req,res,next){
+
+        try{
+            
+            let data = {userObj : req.user , userDetails : req.body || {}};
+            let result = await this.service1.updateUserDetails(data);
+            res.status(200).send({message : "Login successful , cart data updated",success : true , data : result})
+
+        }catch(err){
+            next(err)
+        }
+    }
+
+}

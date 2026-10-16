@@ -4,7 +4,9 @@ import cors from "cors";
 import {connect,disconnect} from './Config/MongoDbConnections.js'
 import routes from './Routes/UrbanClutchRoutes.js';
 import {errorHandler} from './Middleware/ErrorHandler.js'
-import {startProducteventStream} from './SSE/ProductEventStream.js'
+import {startEventStream} from './SSE/EventStream.js'
+import { validateReservationsJob } from './Container/UrbanClutchContainer.js';
+import cookieParser from "cookie-parser";
 
 import dotenv from 'dotenv';
 dotenv.config()
@@ -14,17 +16,27 @@ const app = express();
 connect();
 
 
-startProducteventStream();
+const {changeStreamProduct,changeStreamOrders,listen} = startEventStream();
 
-app.use(cors());
+listen();
+
+validateReservationsJob.validateReservations();
+app.use(cookieParser());
+app.use(cors({
+    origin : "http://localhost:5173" ,
+    credentials: true
+}));
 app.use(express.json());
 app.use('/api', routes);
 app.use(errorHandler);
 
 process.on('SIGINT', async () => {
+    await changeStreamProduct.close();
+    await changeStreamOrders.close();
     await disconnect();
 });
 process.on('SIGTERM', async () => {
+    
     await disconnect();
 });
 

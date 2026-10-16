@@ -7,7 +7,7 @@ export class MongoDbProductRepository extends ProductDataAbs {
     async getProductData(){
         try {
 
-             return await Product.find().lean();
+             return await Product.find().sort({productId : 1}).lean();
             
         }
         catch (error) {

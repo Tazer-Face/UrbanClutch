@@ -1,15 +1,5 @@
-import Razorpay from "razorpay";
-import dotenv from 'dotenv';
+import { razorpay } from "../../Config/RazorpayObj.js";
 import { AppError } from "../../Utils/ErrorClass.js";
-import mongoose from "mongoose";
-dotenv.config()
-
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_API_KEY,
-    key_secret: process.env.RAZORPAY_SECRET_KEY
-});
-
-
 
 
 class CreateRazerPayDataS{
@@ -28,6 +18,7 @@ class CreateRazerPayDataS{
 
  
             const total = await this.userRepository1.calculateTotal(reservationId);
+            console.log(total)
             
             if(  total <= 0){
                 throw new AppError("Unable to calculate total",500,total)

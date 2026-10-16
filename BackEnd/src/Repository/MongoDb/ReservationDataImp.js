@@ -1,4 +1,5 @@
 
+import mongoose from "mongoose";
 import Reservation from "../../Modals/Reservation.js";
 import ReservationDataAbs from "../Abstractions/ReservationDataAbs.js";
 
@@ -8,12 +9,7 @@ export class MongoDbReservationRepository extends ReservationDataAbs {
         try {
 
             
-             let res = await Reservation.create([{
-                OrderDetails: data.OrderDetails ,
-                status: data.status,
-                expiresAt: data.expiresAt,
-
-             }],
+             let res = await Reservation.create(data,
              {
                 session
              });
@@ -27,11 +23,10 @@ export class MongoDbReservationRepository extends ReservationDataAbs {
 
     }
 
-    async deleteReservation(id,{session}) {
+    async deleteReservation(id,session=null) {
         try {
-
             
-             let res = await Reservation.deleteOne({ _id: id},
+             let res = await Reservation.deleteOne(id,
              {
                 session
              });
@@ -45,11 +40,10 @@ export class MongoDbReservationRepository extends ReservationDataAbs {
 
     }
 
-    async getReservation(id) {
+    async getReservation(data) {
         try {
-
             
-             let res = await Reservation.find({_id : id}).lean();
+             let res = await Reservation.find(data).lean();
             
              return res;
         }
@@ -59,6 +53,52 @@ export class MongoDbReservationRepository extends ReservationDataAbs {
         }
 
     }
+
+    async updateReservation(id,data,session=null) {
+        try {
+            
+             let res = await Reservation.findOneAndUpdate(id,{$set : data}, {
+                session,
+                returnDocument: "after"
+            });
+            
+             return res;
+        }
+        catch (error) {
+            console.error("Error updating reservation doc", error);
+            throw error;
+        }
+
+    }
+
+
+    async updateManyReservation(filter,data) {
+        try {
+            
+             let res = await Reservation.updateMany(filter,data);
+            
+             return res;
+        }
+        catch (error) {
+            console.error("Error updating reservation doc", error);
+            throw error;
+        }
+
+    }
+
+    // async getAllReservations() {
+    //     try {
+            
+    //          let res = await Reservation.find().lean();
+            
+    //          return res;
+    //     }
+    //     catch (error) {
+    //         console.error("Error getting reservation doc", error);
+    //         throw error;
+    //     }
+
+    // }
 
     
     

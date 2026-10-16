@@ -14,6 +14,7 @@ const NavBar = () => {
     <Navbar expand="lg" bg="black" variant="dark" className="p-3 my-navbar">
         <Container >
             <Nav className="d-flex flex-row align-items-center flex-nowrap justify-content-between gap-3 gap-md-4 w-100 p-2 nav" >
+              
               <a href="https://www.instagram.com/urbanclutch_/" target="_blank" rel="noopener noreferrer">
                 <img src="/Icons/Instagram.png" alt="Instagram"style={{ width: "35px", height: "35px" }}/>
               </a>
@@ -30,7 +31,8 @@ const NavBar = () => {
                   {quant}
                 </span>
               </div>
-            </Nav>
+              </Nav>
+              
         </Container>
     </Navbar>
   )

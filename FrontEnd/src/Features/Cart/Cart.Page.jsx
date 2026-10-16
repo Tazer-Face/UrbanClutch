@@ -12,7 +12,7 @@ import CartDetails from "../../Shared/Components/CartDetails";
 
 
 const Cart = () => {
-  const { productData, cartData  ,total ,setProductData } = useContext(ProductDataContext);
+  const { productData, userData  ,total ,setProductData ,user} = useContext(ProductDataContext);
   const location = useLocation();
   const {viewProduct} = useProductNavigate();
   const {checkUpdateQty,syncServerData} = useCheckUpdateItem();
@@ -36,6 +36,14 @@ const Cart = () => {
   //   });
 
   // }
+  function addressOrLogin(){
+    if(user){
+      viewProduct('address')
+    }
+    else{
+      viewProduct('login')
+    }
+  }
 
   useEffect(()=>{
     syncServerData();
@@ -48,7 +56,7 @@ const Cart = () => {
       <div className="d-flex flex-column align-items-center justify-content-center mb-5 gap-5">
         <CartNavBar locationCur={location.pathname} />
         {
-          Object.entries(cartData.cartData ?? {}).map(([id,products]) =>{
+          Object.entries(userData.cart ?? {}).map(([id,products]) =>{
             
             let productD = productData.find(ele =>ele.productId === id ) ;
             return Object.entries(products).map(([size,qty]) => (
@@ -63,7 +71,7 @@ const Cart = () => {
 
           <div className="d-flex flex-column align-items-start flex-md-row align-items-md-center justify-content-md-between w-100 gap-4" style={{maxWidth : "1000px"}}>
           <h4>TOTAL AMOUNT : ₹ {total} </h4>
-          <Button className="w-50 w-md-100 cartAddPayBtn" onClick={()=>viewProduct("address")} >
+          <Button className="w-50 w-md-100 cartAddPayBtn" onClick={addressOrLogin} >
             CONTINUE
           </Button>
         </div> : <h3>YOUR BAG IS EMPTY : /</h3>

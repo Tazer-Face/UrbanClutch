@@ -10,17 +10,18 @@ import { useContext } from "react";
 import { ProductDataContext } from "../../../App/Providers/ProductDataContext";
 
 const Address = () => {
-  const { cartData} = useContext(ProductDataContext);
+  const { userData} = useContext(ProductDataContext);
 
   const [data, setData] = useState({
-  name: cartData.userDetails?.name ?? "",
-  email: cartData.userDetails?.email ?? "",
-  phone: cartData.userDetails?.phone ?? "",
-  state: cartData.userDetails?.state ?? "",
-  city: cartData.userDetails?.city ?? "",
-  pincode: cartData.userDetails?.pincode ?? "",
-  address: cartData.userDetails?.address ?? ""
+  Name: userData.userDetails?.Name ?? "",
+  Email: userData.userDetails?.Email ?? "",
+  PhoneNo: userData.userDetails?.PhoneNo ?? "",
+  State: userData.userDetails?.State ?? "",
+  City: userData.userDetails?.City ?? "",
+  PinCode: userData.userDetails?.PinCode ?? "",
+  Address: userData.userDetails?.Address ?? ""
 });
+
 
   const location = useLocation();
   const {viewProduct} = useProductNavigate();
@@ -36,15 +37,15 @@ const Address = () => {
     }));
   }
 
+  function saveAddress(){
+    updateUserDetails(data);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     updateUserDetails(data);
     viewProduct("payment");
   }
-
-  useEffect(()=>{
-    console.log(data)
-  })
 
   return (
     <Container>
@@ -58,8 +59,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userName">
             <Form.Label>Name</Form.Label>
             <Form.Control
-              name="name"
-              value={data.name}
+              name="Name"
+              value={data.Name}
               onChange={handleChange}
               type="text"
               placeholder="Enter name"
@@ -70,8 +71,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
-              name="email"
-              value={data.email}
+              name="Email"
+              value={data.Email}
               onChange={handleChange}
               type="email"
               placeholder="Enter email"
@@ -82,8 +83,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userPhNo">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
-              name="phone"
-              value={data.phone}
+              name="PhoneNo"
+              value={data.PhoneNo}
               onChange={handleChange}
               type="text"
               placeholder="Enter phone number ex 8877345321"
@@ -95,8 +96,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userState">
             <Form.Label>State</Form.Label>
             <Form.Control
-              name="state"
-              value={data.state}
+              name="State"
+              value={data.State}
               onChange={handleChange}
               type="text"
               placeholder="Enter State"
@@ -107,8 +108,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userCity">
             <Form.Label>City</Form.Label>
             <Form.Control
-              name="city"
-              value={data.city}
+              name="City"
+              value={data.City}
               onChange={handleChange}
               type="text"
               placeholder="Enter city"
@@ -119,8 +120,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userPinCode">
             <Form.Label>Pincode</Form.Label>
             <Form.Control
-              name="pincode"
-              value={data.pincode}
+              name="PinCode"
+              value={data.PinCode}
               onChange={handleChange}
               type="text"
               placeholder="Enter pincode Ex 123456"
@@ -132,8 +133,8 @@ const Address = () => {
           <Form.Group className="mb-3" controlId="userAddress">
             <Form.Label>Address</Form.Label>
             <Form.Control
-              name="address"
-              value={data.address}
+              name="Address"
+              value={data.Address}
               onChange={handleChange}
               type="text"
               placeholder="Enter Address"
@@ -141,9 +142,16 @@ const Address = () => {
             />
           </Form.Group>
 
-          <Button className="cartAddPayBtn " type="submit">
-            Continue
-          </Button>
+          <div className="d-flex align-items-center justify-content-between">
+            <Button className="cartAddPayBtn " type="submit">
+              Continue
+            </Button>
+            <Button className="cartAddSaveBtn " onClick={saveAddress}>
+              SAVE ADDRESS
+            </Button>
+          </div>
+
+          
         </Form>
       </div>
     </Container>
