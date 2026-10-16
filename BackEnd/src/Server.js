@@ -28,6 +28,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/api', routes);
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+});
 app.use(errorHandler);
 
 process.on('SIGINT', async () => {
