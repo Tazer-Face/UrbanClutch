@@ -9,30 +9,30 @@ const FooterHome = () => {
 
 
         <div  className='mt-5 row justify-content-center w-100 p-4'>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center'
+            <h6 className='col-8 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("aboutUs")}}
             >
             About Us
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center'
+            <h6 className='col-8 col-sm-2 text-start text-sm-center'
                  onClick={()=>{viewProduct("contactUs")}}
             >Contact Us</h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center'
+            <h6 className='col-8 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("privacyPolicy")}}
             >
             Privacy Policy 
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center'
+            <h6 className='col-8 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("tAndC")}}
             >
             Terms & Conditions
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center'
+            <h6 className='col-8 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("shipping")}}
             >
             Shipping Policy 
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center'
+            <h6 className='col-8 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("returnRefund")}}
             >
             Return & Refund Policy
