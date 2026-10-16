@@ -27,6 +27,9 @@ export function useCreateRazerpayCheckout(){;
                     }
                     else{
                         alert(orderData.data.message)
+                        setUserData(prev=>({...prev , cart : {}}));
+                        setDisable(false);
+                        viewProduct("cart");
                     }
                     
 
