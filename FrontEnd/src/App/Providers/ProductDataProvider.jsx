@@ -39,7 +39,7 @@ const ProductDataProvider = ({children}) => {
             let user = userInfo ;
             let token = await user.getIdToken();
             //"http://localhost:3000/api/userDetails"
-            let result = await axios.patch("https://urbanclutch.onrender.com/api/userDetails",userData,{
+            let result = await axios.patch("https://api.urbanclutch.in/api/userDetails",userData,{
                 headers : {
                     Authorization : `Bearer ${token}`,
                     'Content-Type' : 'application/json'
@@ -75,7 +75,7 @@ const ProductDataProvider = ({children}) => {
         
         loadData();
         //http://localhost:3000/api/events
-        const serverEvent = new EventSource("https://urbanclutch.onrender.com/api/events", { withCredentials: true });
+        const serverEvent = new EventSource("https://api.urbanclutch.in/api/events", { withCredentials: true });
         
 
         serverEvent.addEventListener("ProductData",(res)=>{

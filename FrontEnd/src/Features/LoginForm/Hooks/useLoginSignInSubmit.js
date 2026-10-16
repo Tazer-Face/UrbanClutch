@@ -21,7 +21,7 @@ export function useLoginSignInSubmit(){
             let token = await user.getIdToken();
 
             //http://localhost:3000/api/userDetails
-            let result = await axios.post("https://urbanclutch.onrender.com/api/userDetails",userData,{
+            let result = await axios.post("https://api.urbanclutch.in/userDetails",userData,{
                     headers : {
                         Authorization : `Bearer ${token}`,
                         'Content-Type' : 'application/json'

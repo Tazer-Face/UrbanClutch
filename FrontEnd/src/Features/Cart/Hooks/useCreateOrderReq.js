@@ -13,7 +13,7 @@ export function useCreateOrderReq(){
         try{
             let token = await user.getIdToken();
             //http://localhost:3000/api/orderData  
-            let res = await axios.post("https://urbanclutch.onrender.com/api/orderData",userData,{
+            let res = await axios.post("https://api.urbanclutch.in/orderData",userData,{
             headers : {
                 Authorization : `Bearer ${token}`,
                 'Content-Type' : 'application/json'
