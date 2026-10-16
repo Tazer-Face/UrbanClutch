@@ -8,31 +8,31 @@ const FooterHome = () => {
     <div className="footerMargin" style={{backgroundColor:"#f5f5f5",width:"100%"}}>
 
 
-        <div  className='mt-5 row justify-content-start justify-content-sm-center w-100 p-4'>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center footerElements'
+        <div  className='mt-5 row justify-content-center w-100 p-4'>
+            <h6 className='col-12 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("aboutUs")}}
             >
             About Us
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center footerElements'
+            <h6 className='col-12 col-sm-2 text-start text-sm-center'
                  onClick={()=>{viewProduct("contactUs")}}
             >Contact Us</h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center footerElements'
+            <h6 className='col-12 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("privacyPolicy")}}
             >
             Privacy Policy 
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center footerElements'
+            <h6 className='col-12 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("tAndC")}}
             >
             Terms & Conditions
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center footerElements'
+            <h6 className='col-12 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("shipping")}}
             >
             Shipping Policy 
             </h6>
-            <h6 className='col-12 col-sm-2 text-start text-sm-center footerElements'
+            <h6 className='col-12 col-sm-2 text-start text-sm-center'
                 onClick={()=>{viewProduct("returnRefund")}}
             >
             Return & Refund Policy
