@@ -15,7 +15,7 @@ import { FetchProductDetails } from "../Controller/FetchProductDataApi.js";
 import { CreateOrder } from "../Controller/CreateOrderApi.js";
 import { UpdateCreateUserDetailsOnLogin } from "../Controller/UserCartOnLogin.js";
 import { UpdateUserDetailsOnLogout } from "../Controller/UserCartOnLogout.js";
-import { VerifyOrder } from "../Controller/verifyOrderApi.js";
+import { VerifyOrder } from "../Controller/VerifyOrderApi.js";
 
 import { MongoDbReservationRepository } from "../Repository/MongoDb/ReservationDataImp.js";
 import { MongoDbProductRepository } from "../Repository/MongoDb/ProductDataImp.js";

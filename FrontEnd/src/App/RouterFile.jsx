@@ -14,7 +14,7 @@ import ShippingPolicy from '../Features/Home/Components/ShippingPolicy.jsx'
 import ReturnRefundPolicy from '../Features/Home/Components/ReturnRefundPolicy.jsx'
 import LoginForm from '../Features/LoginForm/Components/LoginForm.jsx'
 import SignUpForm from '../Features/LoginForm/Components/SignUpForm.jsx'
-import OrdersPage from '../Features/Orders/Orders.page.jsx'
+import OrdersPage from '../Features/Orders/Orders.Page.jsx'
 import OrderDetails from '../Features/Orders/Components/OrderDetails.jsx'
 import ForgotPasswordForm from '../Features/LoginForm/Components/ForgotPasswordForm.jsx'
 
