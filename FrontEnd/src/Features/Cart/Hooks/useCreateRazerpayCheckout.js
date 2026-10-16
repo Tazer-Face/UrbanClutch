@@ -20,7 +20,7 @@ export function useCreateRazerpayCheckout(){;
                     setDisable(true)
                     
                     //http://localhost:3000/api/verifyOrder  
-                    let orderData = await axios.post("https://api.urbanclutch.in/verifyOrder",response);
+                    let orderData = await axios.post("https://api.urbanclutch.in/api/verifyOrder",response);
 
                     if(orderData.data.success){
                         verifyPayment(orderData.data.data);
