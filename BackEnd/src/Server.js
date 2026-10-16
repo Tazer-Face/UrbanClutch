@@ -23,7 +23,7 @@ listen();
 validateReservationsJob.validateReservations();
 app.use(cookieParser());
 app.use(cors({
-    origin : "http://localhost:5173" ,
+    origin : "https://urban-clutch.sshanbogh.workers.dev" ,
     credentials: true
 }));
 app.use(express.json());
