@@ -330,7 +330,7 @@ ol {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/*Orders List*/
+/*Carasole image*/
 .fullscreen-product-image {
   display: block;
   max-width: 100%;
@@ -338,4 +338,17 @@ ol {
   width: auto;
   height: auto;
   object-fit: contain;
+}
+
+.product-image-modal .modal-content {
+  background-color: #000;
+  color: #fff;
+}
+
+.product-image-modal .btn-close {
+  filter: invert(1);
+}
+
+.product-image-modal .modal-header {
+  border-bottom: none;
 }

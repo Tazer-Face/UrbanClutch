@@ -33,10 +33,9 @@ const ProductCarousel = ({arr,cssClass}) => {
         show={showImage}
         onHide={closeImage}
         fullscreen
-        aria-label="Full-screen product image"
+        className="product-image-modal"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Product image</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="d-flex align-items-center justify-content-center p-2">
@@ -45,8 +44,8 @@ const ProductCarousel = ({arr,cssClass}) => {
               src={selectedImage}
               alt="Full-screen product"
               className="fullscreen-product-image"
-        />
-        )}
+            />
+          )}
         </Modal.Body>
       </Modal>
   </>
