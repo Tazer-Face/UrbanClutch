@@ -9,7 +9,6 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const NavToggle = () => {
     const [loginState , setLoginState] = useState("");
-    const [logout , setLogout] = useState(false)
     const {handleLogout,user,setUserData} = useContext(ProductDataContext);
     const {viewProduct} = useProductNavigate();
 
@@ -17,8 +16,7 @@ const NavToggle = () => {
         
         if(loginState === "LOGOUT"){
             try{
-                setLogout(true);
-                await handleLogout(user,setLogout);
+                await handleLogout(user);
                 setUserData({ cart: {},userDetails: {},userId : "" })
                 viewProduct("login")
 
@@ -42,18 +40,6 @@ const NavToggle = () => {
         }
         
     },[user])
-
-    if (logout) {
-      return (
-        <Container>
-          <div className="d-flex justify-content-center p-4">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
-        </Container>
-      );
-    }
 
   return (
     <Navbar expand="lg" bg="black" variant="dark" className="p-3">

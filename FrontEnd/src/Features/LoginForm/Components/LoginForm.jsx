@@ -26,8 +26,8 @@ const LoginForm = () => {
 
     if (disableLogin) {
       return (
-        <Container>
-          <div className="d-flex justify-content-center p-4">
+        <Container className="w-100">
+          <div className="d-flex align-items-center justify-content-center p-4 w-100 vh-100">
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>

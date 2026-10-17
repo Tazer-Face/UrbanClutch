@@ -11,7 +11,7 @@ const SignUpForm = () => {
     const [disableSignIn,setDisableSignIn] = useState(false)
     const {viewProduct} = useProductNavigate();
     const {onSignInSubmit} = useLoginSignInSubmit()
-    
+
     function handleSubmit(e){
         e.preventDefault();
         setDisableSignIn(true)
@@ -27,7 +27,7 @@ const SignUpForm = () => {
     if (disableSignIn) {
       return (
         <Container>
-          <div className="d-flex justify-content-center p-4">
+          <div className="d-flex align-items-center justify-content-center p-4 w-100 vh-100">
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>

@@ -18,7 +18,6 @@ const ProductDataProvider = ({children}) => {
         return  { cart: (data?.cart || {} ),userDetails:(data?.userDetails || {}) ,userId : (data?.userId || "") ,userOrders :  (data?.userOrders || {}) }
     })
     const [user,setUser] = useState("");
-    const [loadingPayment,setLoadingPayment] = useState(false);
 
     async function loadData(){
         let data;
@@ -34,7 +33,7 @@ const ProductDataProvider = ({children}) => {
         
     }
 
-    const handleLogout = async (userInfo,setLogout) => {
+    const handleLogout = async (userInfo) => {
         try {
             let user = userInfo ;
             let token = await user.getIdToken();
@@ -52,10 +51,8 @@ const ProductDataProvider = ({children}) => {
             await signOut(auth);
             localStorage.removeItem("userData")
             alert("Logging out");
-            setLogout(false)
         } catch (error) {
             console.error(error);
-            setLogout(false)
         }
     };
 
