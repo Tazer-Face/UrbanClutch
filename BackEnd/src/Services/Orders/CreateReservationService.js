@@ -58,7 +58,7 @@ class CreateReservationDataS{
                 FirebaseUid : orderData.userObj.uid,
                 UserDetails : orderData.userDetails.userDetails,
                 OrderDetails: cartData,
-                expiresAt: new Date(Date.now() +  10 * 60 * 1000) // 10 minutes from now
+                expiresAt: new Date(Date.now() +  10 * 60 * 1000)
             }
 
             let createReservation = await this.userRepository2.createReservation([resData],{session});

@@ -4,10 +4,12 @@ import { ProductDataContext } from "../../App/Providers/ProductDataContext";
 import { useContext, useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { useProductNavigate } from '../Hooks/useProductNavigate';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const NavToggle = () => {
     const [loginState , setLoginState] = useState("");
+    const [logout , setLogout] = useState(false)
     const {handleLogout,user,setUserData} = useContext(ProductDataContext);
     const {viewProduct} = useProductNavigate();
 
@@ -15,11 +17,13 @@ const NavToggle = () => {
         
         if(loginState === "LOGOUT"){
             try{
-                await handleLogout(user);
+                setLogout(true);
+                await handleLogout(user,setLogout);
                 setUserData({ cart: {},userDetails: {},userId : "" })
                 viewProduct("login")
 
             }catch(err){
+                setLogout(false);
                 console.error(err);
             }
             
@@ -38,6 +42,18 @@ const NavToggle = () => {
         }
         
     },[user])
+
+    if (logout) {
+      return (
+        <Container>
+          <div className="d-flex justify-content-center p-4">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        </Container>
+      );
+    }
 
   return (
     <Navbar expand="lg" bg="black" variant="dark" className="p-3">

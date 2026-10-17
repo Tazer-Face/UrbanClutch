@@ -34,7 +34,7 @@ const ProductDataProvider = ({children}) => {
         
     }
 
-    const handleLogout = async (userInfo) => {
+    const handleLogout = async (userInfo,setLogout) => {
         try {
             let user = userInfo ;
             let token = await user.getIdToken();
@@ -52,8 +52,10 @@ const ProductDataProvider = ({children}) => {
             await signOut(auth);
             localStorage.removeItem("userData")
             alert("Logging out");
+            setLogout(false)
         } catch (error) {
             console.error(error);
+            setLogout(false)
         }
     };
 
@@ -171,7 +173,7 @@ const ProductDataProvider = ({children}) => {
 
   return (
     <ProductDataContext.Provider
-        value={{productData , userData , setUserData ,quant ,total ,shipping ,setProductData , user , handleLogout ,loadingPayment , setLoadingPayment ,disable,setDisable}}
+        value={{productData , userData , setUserData ,quant ,total ,shipping ,setProductData , user , handleLogout ,disable,setDisable}}
     >
         {children}
     </ProductDataContext.Provider>

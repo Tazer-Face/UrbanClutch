@@ -17,7 +17,6 @@ export function useCreateRazerpayCheckout(){;
 
             handler: async function (response) {
                 try{
-                    setDisable(true)
                     
                     //http://localhost:3000/api/verifyOrder  
                     let orderData = await axios.post("https://api.urbanclutch.in/api/verifyOrder",response);
@@ -25,17 +24,10 @@ export function useCreateRazerpayCheckout(){;
                     if(orderData.data.success){
                         verifyPayment(orderData.data.data);
                     }
-                    else{
-                        console.log(orderData.data)
-                        alert(orderData.data.message)
-                        setUserData(prev=>({...prev , cart : {}}));
-                        setDisable(false);
-                        viewProduct("cart");
-                    }
                     
 
                 }catch(err){
-                    setDisable(false)
+                    
                     if(err.response.data.message === "Payment unsuccessful"){
                         alert(err.response.data.message)
                     }
@@ -43,6 +35,7 @@ export function useCreateRazerpayCheckout(){;
                         alert("Something went wrong , incase your payment was processed please check your orders after sometime. If the issue still persists , please contact customer support.")
                     }
                     setUserData(prev=>({...prev , cart : {}}));
+                    setDisable(false)
                     viewProduct("cart");
                 }
                     

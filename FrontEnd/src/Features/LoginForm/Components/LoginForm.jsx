@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useProductNavigate } from "../../../Shared/Hooks/useProductNavigate";
 import { useLoginSignInSubmit } from "../Hooks/useLoginSignInSubmit.js";
+import Spinner from 'react-bootstrap/Spinner';
 
 const LoginForm = () => {
     const {viewProduct} = useProductNavigate();
@@ -22,6 +23,19 @@ const LoginForm = () => {
         let name = e.target.name;
         setData(prev=>({...prev,[name]:value}))
     }
+
+    if (disableLogin) {
+      return (
+        <Container>
+          <div className="d-flex justify-content-center p-4">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        </Container>
+      );
+    }
+
   return (
     <Container className="h-100">
       <div className="d-flex flex-column align-items-center justify-content-center h-100">

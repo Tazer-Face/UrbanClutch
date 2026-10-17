@@ -10,13 +10,14 @@ import {useCreateOrderReq} from "../Hooks/useCreateOrderReq.js"
 import {useCreateRazerpayCheckout} from "../Hooks/useCreateRazerpayCheckout.js"
 import { useVerifyPayment } from "../Hooks/useVerifyPayment.js";
 import { useCheckUpdateItem } from "../Hooks/useCheckUpdateItem.js";
+import Spinner from 'react-bootstrap/Spinner';
 
 const Payment = () => {
 
     
     const location = useLocation();
     const {viewProduct} = useProductNavigate();
-    const { productData,userData ,total ,shipping ,orders ,loadingPayment ,disable,setDisable} = useContext(ProductDataContext);
+    const { productData,userData ,total ,shipping ,disable,setDisable} = useContext(ProductDataContext);
     const {createNewOrder} = useCreateOrderReq();
     const {createCheckout} = useCreateRazerpayCheckout();
     const {verifyPayment} = useVerifyPayment();
@@ -39,12 +40,24 @@ const Payment = () => {
         rzp.open();
         
       }
-      catch(err){
-        setDisable(false);
+      catch(err){     
         alert("Unable to place your order at the moment , please try again later.")
+        setDisable(false);
         console.error("Unable to place order",err)
       }
       
+    }
+    
+    if (disable) {
+      return (
+        <Container>
+          <div className="d-flex justify-content-center p-4">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        </Container>
+      );
     }
 
   // useEffect(()=>{
@@ -57,7 +70,7 @@ const Payment = () => {
 
       <CartNavBar locationCur={location.pathname} clickFn={viewProduct} routes={["cart","address",null]} />
       { total > 0 ?
-        !loadingPayment ?
+
         <div className="d-flex flex-column flex-md-row align-items-start justify-content-center gap-4 w-100 mb-5">
           <div  style={{ flex: "0 0 70%" }} className="cart-left d-flex flex-column align-items-center justify-content-center gap-4 w-100">
           {
@@ -110,11 +123,7 @@ const Payment = () => {
 
           </div>
           
-        </div> :  
-        <div className="d-flex flex-column align-items-center justify-items-center mt-5 vh-100">
-          <h3>Please wait while we verify your payment...</h3>
-        </div>
-
+        </div> 
          : 
         <div className="d-flex flex-column align-items-center justify-items-center mt-5">
           <h3>YOUR BAG IS EMPTY : /</h3>

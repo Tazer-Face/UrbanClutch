@@ -111,7 +111,7 @@ export default class VerifyReservationS{
                 ]
             },
             {$set : {claimId : claimId , 
-                state : 'Claimed' ,claimExpiresAt : new Date(Date.now() +  10*60* 1000)}
+                state : 'Claimed' ,claimExpiresAt : new Date(Date.now() +  10*60*1000)}
             });
 
         if (reservations.modifiedCount <= 0 ){
