@@ -10,7 +10,7 @@ export function useCreateRazerpayCheckout(){;
         
         
         const options = {
-            key: import.meta.env.VITE_RAZORPAY_API_KEY,
+            key: "rzp_test_TkK8HKttLSOm8Q",
             amount: razorpayOrder.amount,
             currency: razorpayOrder.currency,
             order_id: razorpayOrder.id,
@@ -26,6 +26,7 @@ export function useCreateRazerpayCheckout(){;
                         verifyPayment(orderData.data.data);
                     }
                     else{
+                        console.log(orderData.data)
                         alert(orderData.data.message)
                         setUserData(prev=>({...prev , cart : {}}));
                         setDisable(false);
