@@ -259,6 +259,7 @@ export default class VerifyReservationS{
                     console.log("Rolling back expired unsuccessful reservations")
                     await this.rollbackReservation(reservations.RazorPayOrderId,claimId)
                 }catch(err){
+                    console.error(err)
                     try {
                         await this.userRepository1.updateReservation(
                             { RazorPayOrderId:reservations.RazorPayOrderId ,claimId: claimId },
