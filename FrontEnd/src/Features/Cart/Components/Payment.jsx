@@ -35,8 +35,6 @@ const Payment = () => {
           alert("Payment failed")
         });
 
-        rzp.on()
-
         rzp.open();
         
       }
