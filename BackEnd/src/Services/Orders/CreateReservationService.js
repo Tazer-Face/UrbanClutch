@@ -59,6 +59,7 @@ class CreateReservationDataS{
                 UserDetails : orderData.userDetails.userDetails,
                 OrderDetails: cartData,
                 CheckoutKey : orderData.userDetails.CheckoutKey,
+                CartSignature : orderData.userDetails.CartSignature,
                 expiresAt: new Date(Date.now() +  10 * 60 * 1000)
             }
 

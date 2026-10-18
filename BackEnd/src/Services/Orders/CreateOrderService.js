@@ -30,7 +30,8 @@ class CreateOrderDataS{
 
     async createOrder(orderData){
 
-        let signature = createSignature(orderData)
+        let signature = this.createSignature(orderData)
+        orderData.userDetails.CartSignature = signature;
         let reservationId = {};
         let idSignatureCheckout = {};
         idSignatureCheckout.FirebaseUid = orderData.userObj.uid;
