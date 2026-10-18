@@ -43,7 +43,7 @@ const ProductDataProvider = ({children}) => {
 
         const cartString = JSON.stringify(normalizedCart);
 
-        if(cartSignature === cartString){
+        if(userData.cartSignature === cartString){
             return
         }
 
