@@ -15,7 +15,8 @@ const ProductDataProvider = ({children}) => {
 
     const [userData,setUserData] = useState(()=>{
         let data = JSON.parse(localStorage.getItem("userData"));
-        return  { cart: (data?.cart || {} ),userDetails:(data?.userDetails || {}) ,userId : (data?.userId || "") ,userOrders :  (data?.userOrders || {}) }
+        return  { cart: (data?.cart || {} ),userDetails:(data?.userDetails || {}) ,userId : (data?.userId || "")
+                ,userOrders :  (data?.userOrders || {}) , CheckoutKey : "" ,cartSignature : ""}
     })
     const [user,setUser] = useState("");
 
@@ -31,6 +32,24 @@ const ProductDataProvider = ({children}) => {
             console.error("Unable to fetch product data from server : ",err)
         }
         
+    }
+
+    function createCheckoutkey(){
+   
+        let normalizedCart = Object.entries(userData?.cart).map(([id,sizes])=>(
+                 { productId: id.toString(),
+                    sizes :  Object.fromEntries( Object.entries(sizes).sort(([sizeA],[sizeB])=> sizeA.localeCompare(sizeB) ))}
+        )).sort((a,b)=> a.productId.localeCompare(b.productId))
+
+        const cartString = JSON.stringify(normalizedCart);
+
+        if(cartSignature === cartString){
+            return
+        }
+
+        const key = crypto.randomUUID();
+        setUserData(prev=>({...prev,CheckoutKey : key ,cartSignature : cartString}))
+
     }
 
     const handleLogout = async (userInfo) => {
@@ -122,7 +141,6 @@ const ProductDataProvider = ({children}) => {
             }
         };
 
-
         return ()=>{
             serverEvent.close()
         }
@@ -164,6 +182,7 @@ const ProductDataProvider = ({children}) => {
     
 
     useEffect(() => {
+        createCheckoutkey();
         localStorage.setItem("userData",JSON.stringify(userData))
     }, [userData]);
 

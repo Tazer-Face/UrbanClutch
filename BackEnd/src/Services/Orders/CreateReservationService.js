@@ -58,6 +58,7 @@ class CreateReservationDataS{
                 FirebaseUid : orderData.userObj.uid,
                 UserDetails : orderData.userDetails.userDetails,
                 OrderDetails: cartData,
+                CheckoutKey : orderData.userDetails.CheckoutKey,
                 expiresAt: new Date(Date.now() +  10 * 60 * 1000)
             }
 
@@ -75,6 +76,17 @@ class CreateReservationDataS{
         catch(err){
 
             await session.abortTransaction();
+
+            if (err.code === 11000) {
+                return res.status(204).end();
+            }
+
+            if (
+                err.code === 112 ||
+                err.hasErrorLabel?.("TransientTransactionError")
+            ) {
+                return res.status(204).end();
+            }
 
             if (err instanceof AppError) {
                 throw err;

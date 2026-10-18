@@ -8,8 +8,19 @@ const reservationSchema = new mongoose.Schema(
         },
 
         RazorPayOrderId :  String,
+
+        CartSignature :  String,
         
         Total : Number,
+
+        RazorPayObject  : Object,
+
+        CheckoutKey  : String ,
+
+        OrderCreationStatus : {
+            type : String,
+            enum : ["Creating","Created"]
+        },
 
         UserDetails : {
         
@@ -107,11 +118,11 @@ const reservationSchema = new mongoose.Schema(
 );
 
 reservationSchema.index(
-  { FirebaseUid: 1 },
+  { FirebaseUid: 1 , CheckoutKey : 1 },
   {
     unique: true,
     partialFilterExpression: {
-      state: "Active"
+      CheckoutKey: "Created"
     }
   }
 );

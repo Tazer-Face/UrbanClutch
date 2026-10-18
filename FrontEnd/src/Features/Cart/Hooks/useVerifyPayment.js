@@ -11,7 +11,7 @@ export function useVerifyPayment(){
     function verifyPayment(orders){
         
         if(orders[0].status === "Confirmed"){
-            setUserData(prev=>({...prev , cart : {} , userOrders : orders}))
+            setUserData(prev=>({...prev , cart : {} , userOrders : orders ,CheckoutKey : "" ,cartSignature : ""}))
             alert("Payment confirmed , redirecting you to the home page"); 
         }
         else{

@@ -24,17 +24,26 @@ export function useCreateRazerpayCheckout(){;
                     if(orderData.data.success){
                         verifyPayment(orderData.data.data);
                     }
+
+                    if(orderData.data.status === "already_paid"){
+                        alert("Payment has been processed for this particular req , redirecting you to your cart");
+                        setUserData(prev=>({...prev , cart : {} ,CheckoutKey : "" ,cartSignature : ""}));
+                        setDisable(false)
+                        viewProduct("cart");
+                    }
                     
 
                 }catch(err){
                     
                     if(err.response.data.message === "Payment unsuccessful"){
                         alert(err.response.data.message)
+                        setUserData(prev=>({...prev , cart : {} ,CheckoutKey : "" ,cartSignature : ""}));
                     }
                     else{
                         alert("Something went wrong , incase your payment was processed please check your orders after sometime. If the issue still persists , please contact customer support.")
+                        setUserData(prev=>({...prev , cart : {} }));
                     }
-                    setUserData(prev=>({...prev , cart : {}}));
+                    
                     setDisable(false)
                     viewProduct("cart");
                 }

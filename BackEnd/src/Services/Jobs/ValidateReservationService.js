@@ -11,6 +11,9 @@ export default class VerifyReservationS{
 
     async verifyPayment(id , claimId){
         try{
+            if(id === undefined){
+                return false
+            }
             let payment = await razorpay.orders.fetch(id)
     
             return payment.status === "paid";
@@ -148,7 +151,7 @@ export default class VerifyReservationS{
                         }
                         return
                     }
-                    let payment = await this.verifyPayment(ele.RazorPayOrderId ,claimId);
+                    let payment = await this.verifyPayment(ele?.RazorPayOrderId ,claimId);
 
                     if(payment === undefined) return
                     
@@ -210,7 +213,7 @@ export default class VerifyReservationS{
                         return
                     }
 
-                    let payment = await this.verifyPayment(ele.RazorPayOrderId ,claimId);
+                    let payment = await this.verifyPayment(ele?.RazorPayOrderId ,claimId);
 
                     if(payment === undefined) return
 
