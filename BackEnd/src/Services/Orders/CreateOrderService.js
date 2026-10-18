@@ -51,8 +51,10 @@ class CreateOrderDataS{
                 let now = new Date();
                 let currentExpiry = new Date(existingReservation.expiresAt)
                 let paymentStatus = await razorpay.orders.fetch(existingReservation.RazorPayOrderId)
-                
+                console.log("hey")
+                console.log(paymentStatus.status)
                 if(now - currentExpiry <= 9*6*1000 && paymentStatus.status !== "paid" ){
+                    console.log("res exisits")
                     return existingReservation.RazorPayObject
                 }else if(paymentStatus.status === "paid" ){
                     return  res.status(200).json({
