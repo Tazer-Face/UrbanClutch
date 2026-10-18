@@ -91,7 +91,7 @@ const OrderDetails = () => {
                     {/* <p>0</p> */}
                     <p>₹{shipping}</p>
                     <br/>
-                    <h3>₹{data.Total+shipping}</h3>
+                    <h3>₹{data.Total}</h3>
                   </div>
                 </div>
             </div>
