@@ -17,7 +17,7 @@ const Payment = () => {
     
     const location = useLocation();
     const {viewProduct} = useProductNavigate();
-    const { productData,userData ,total ,shipping ,disable,setDisable} = useContext(ProductDataContext);
+    const { productData,userData ,setUserData,total ,shipping ,disable,setDisable} = useContext(ProductDataContext);
     const {createNewOrder} = useCreateOrderReq();
     const {createCheckout} = useCreateRazerpayCheckout();
     const {verifyPayment} = useVerifyPayment();
@@ -27,6 +27,13 @@ const Payment = () => {
       setDisable(true);
       try{
         let res = await createNewOrder();
+        if(res.status === "paid"){
+          alert("A similar order has already been placed and the payment is verified , redirecting you to cart , if this is an error , please try again");
+          setUserData(prev=>({...prev , CheckoutKey : "" ,cartSignature : ""}));
+          viewProduct('cart')
+           setDisable(false);
+          return;
+        }
         let rzp = createCheckout(res.data.data,verifyPayment);
 
         rzp.on('payment.failed', function (response) {
@@ -38,7 +45,8 @@ const Payment = () => {
         rzp.open();
         
       }
-      catch(err){     
+      catch(err){  
+        console.error(err)   
         alert("Unable to place your order at the moment , please try again later.")
         setDisable(false);
         console.error("Unable to place order",err)

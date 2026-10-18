@@ -23,8 +23,9 @@ const ProductDataProvider = ({children}) => {
     async function loadData(){
         let data;
         try{
-            //data = await axios.get("http://localhost:3000/api/productData");
+            
             data = await axios.get("https://urbanclutch.onrender.com/api/productData");
+            //data = await axios.get("http://localhost:3000/api/productData");
             
             setProductData(data.data.data);
         }
@@ -56,13 +57,19 @@ const ProductDataProvider = ({children}) => {
         try {
             let user = userInfo ;
             let token = await user.getIdToken();
-            //"http://localhost:3000/api/userDetails"
+           
             let result = await axios.patch("https://api.urbanclutch.in/api/userDetails",userData,{
                 headers : {
                     Authorization : `Bearer ${token}`,
                     'Content-Type' : 'application/json'
                 }
             })
+            // let result = await axios.patch("http://localhost:3000/api/userDetails",userData,{
+            //     headers : {
+            //         Authorization : `Bearer ${token}`,
+            //         'Content-Type' : 'application/json'
+            //     }
+            // })
 
             if(result.data.success){
                 console.log("updated cart before logout")
@@ -92,8 +99,9 @@ const ProductDataProvider = ({children}) => {
     useEffect(()=>{
         
         loadData();
-        //http://localhost:3000/api/events
+        
         const serverEvent = new EventSource("https://api.urbanclutch.in/api/events", { withCredentials: true });
+        //const serverEvent = new EventSource("http://localhost:3000/api/events", { withCredentials: true });
         
 
         serverEvent.addEventListener("ProductData",(res)=>{

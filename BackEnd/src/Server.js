@@ -23,9 +23,10 @@ listen();
 validateReservationsJob.validateReservations();
 app.use(cookieParser());
 app.use(cors({
-    origin : "https://urbanclutch.in" ,
+    origin :  [ "https://urbanclutch.in"],
     credentials: true
 }));
+
 app.use(express.json());
 app.use('/api', routes);
 app.get("/health", (req, res) => {

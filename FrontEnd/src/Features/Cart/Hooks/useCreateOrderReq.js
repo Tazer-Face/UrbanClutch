@@ -12,13 +12,23 @@ export function useCreateOrderReq(){
         
         try{
             let token = await user.getIdToken();
-            //http://localhost:3000/api/orderData  
+            
             let res = await axios.post("https://api.urbanclutch.in/api/orderData",userData,{
-            headers : {
-                Authorization : `Bearer ${token}`,
-                'Content-Type' : 'application/json'
+                headers : {
+                    Authorization : `Bearer ${token}`,
+                    'Content-Type' : 'application/json'
+                }
+            })
+            // let res = await axios.post("http://localhost:3000/api/orderData",userData,{
+            //     headers : {
+            //         Authorization : `Bearer ${token}`,
+            //         'Content-Type' : 'application/json'
+            //     }
+            // })
+
+            if(res.data.status === "already_paid"){
+                return {status : "paid"}
             }
-        })
 
         return res;
 

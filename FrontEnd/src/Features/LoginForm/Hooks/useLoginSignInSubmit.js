@@ -20,7 +20,6 @@ export function useLoginSignInSubmit(){
             let user = res.user ;
             let token = await user.getIdToken();
 
-            //http://localhost:3000/api/userDetails
             let result = await axios.post("https://api.urbanclutch.in/api/userDetails",userData,{
                     headers : {
                         Authorization : `Bearer ${token}`,
@@ -29,6 +28,14 @@ export function useLoginSignInSubmit(){
                     withCredentials: true
                 }
             )
+            // let result = await axios.post("http://localhost:3000/api/userDetails",userData,{
+            //         headers : {
+            //             Authorization : `Bearer ${token}`,
+            //             'Content-Type' : 'application/json'
+            //         },
+            //         withCredentials: true
+            //     }
+            // )
 
             if(result.data.success){
                 alert("Login successful , redirecting you to your cart ")

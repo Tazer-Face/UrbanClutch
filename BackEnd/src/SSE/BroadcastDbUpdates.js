@@ -39,11 +39,10 @@ export function broadcastDbUpdates(data,event){
     }
     
     else if(event === "Order"){
+    
+        let client = clients.get(data?.FirebaseUid)
 
-        let client = clients.get(data.FirebaseUid)
-        
-        
-            if(!client || client.length === 0) return
+            if(!client || client.size === 0) return
 
             for (let connections of client){
                 try{

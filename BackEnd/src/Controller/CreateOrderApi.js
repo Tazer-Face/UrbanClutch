@@ -11,6 +11,14 @@ export class CreateOrder {
           
           const data = await this.service.createOrder(userData);
 
+          if(data.status === "already_paid"){
+            return res.status(200).json({
+                                status: "already_paid",
+                                message: "This checkout has already been paid.",
+                                orderId: data.RazorPayOrderId
+                            });
+          }
+
           
             
             res.status(201).send({success:true,data: data ,message:"Order placed successfully"})

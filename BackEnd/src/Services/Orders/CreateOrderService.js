@@ -39,31 +39,28 @@ class CreateOrderDataS{
         idSignatureCheckout.CheckoutKey = orderData.userDetails.CheckoutKey;
         idSignatureCheckout.OrderCreationStatus = "Created"
 
-        // idState.FirebaseUid = orderData.userObj.uid;
-        // idState.state = "Active";
-
         
         try{
             
             let existingReservation = await this.userRepository1.getReservation(idSignatureCheckout);
 
             if(!existingReservation || existingReservation.length > 0){
+
                 let now = new Date();
-                let currentExpiry = new Date(existingReservation.expiresAt)
-                let paymentStatus = await razorpay.orders.fetch(existingReservation.RazorPayOrderId)
-                console.log("hey")
-                console.log(paymentStatus.status)
+                let currentExpiry = new Date(existingReservation[0].expiresAt)
+                let paymentStatus = await razorpay.orders.fetch(existingReservation[0].RazorPayOrderId)
+
                 if(now - currentExpiry <= 9*6*1000 && paymentStatus.status !== "paid" ){
-                    console.log("res exisits")
-                    return existingReservation.RazorPayObject
+                    return existingReservation[0].RazorPayObject
                 }else if(paymentStatus.status === "paid" ){
-                    return  res.status(200).json({
+
+                    return  {
                                 status: "already_paid",
-                                message: "This checkout has already been paid.",
-                                orderId: existingReservation._id
-                            });
+                                RazorPayOrderId : existingReservation[0].RazorPayOrderId,
+                                
+                            };
                 }
-                //await this.Service3.paymentOrderFailure(idState)
+
             }
 
             let reservation = await this.Service1.createReservation(orderData)

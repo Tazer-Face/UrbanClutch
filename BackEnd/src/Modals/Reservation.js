@@ -122,7 +122,7 @@ reservationSchema.index(
   {
     unique: true,
     partialFilterExpression: {
-      CheckoutKey: "Created"
+      OrderCreationStatus: "Created"
     }
   }
 );

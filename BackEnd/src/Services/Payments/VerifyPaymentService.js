@@ -1,16 +1,9 @@
-import Razorpay from "razorpay";
 import dotenv from 'dotenv';
 import { AppError } from "../../Utils/ErrorClass.js";
 dotenv.config()
 
 import crypto from "crypto";
 import mongoose from "mongoose";
-
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_API_KEY,
-    key_secret: process.env.RAZORPAY_SECRET_KEY
-});
-
 
 
 
@@ -52,7 +45,6 @@ class VerifyPaymentS{
 
 
             console.log(paymentStatus);
-            
 
             let orderData = {
                 FirebaseUid : reservation[0].FirebaseUid,
@@ -86,8 +78,6 @@ class VerifyPaymentS{
             }
 
             let existingOrders = await this.userRepository2.getOrders({FirebaseUid : reservation[0].FirebaseUid});
-
-            console.log(existingOrders)
 
             orders.push(...existingOrders)
 
