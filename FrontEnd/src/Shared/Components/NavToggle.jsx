@@ -31,6 +31,17 @@ const NavToggle = () => {
         }
     }
 
+    function handleOrders(){
+        if(user){
+            viewProduct("orders")
+        }
+        else{
+            alert("You need to login before you can check your orders , redirectin you to the Login page");
+            viewProduct("login")
+        }
+
+    }
+
     useEffect(()=>{
         if(user){
             setLoginState("LOGOUT")
@@ -53,7 +64,7 @@ const NavToggle = () => {
                 <Dropdown.Menu>
                     <Dropdown.Item  onClick={()=>{viewProduct("/")}}>HOME</Dropdown.Item>
                     <Dropdown.Item  onClick={()=>{viewProduct("cart")}}>CART</Dropdown.Item>
-                    <Dropdown.Item  onClick={()=>{viewProduct("orders")}}>ORDERS</Dropdown.Item>
+                    <Dropdown.Item  onClick={handleOrders}>ORDERS</Dropdown.Item>
                     <Dropdown.Item  onClick={handleUserReq}>{loginState}</Dropdown.Item>
                 </Dropdown.Menu>
 
