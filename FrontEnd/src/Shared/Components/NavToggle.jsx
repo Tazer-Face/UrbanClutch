@@ -12,6 +12,7 @@ const NavToggle = () => {
     const [loginState , setLoginState] = useState("");
     const {handleLogout,user,setUserData} = useContext(ProductDataContext);
     const {viewProduct} = useProductNavigate();
+    const location = useLocation();
 
     async function handleUserReq(){
         
@@ -37,7 +38,7 @@ const NavToggle = () => {
             viewProduct("orders")
         }
         else{
-            const location = useLocation();
+            
             if(location.pathname === "/login"){
                 alert("You need to login before you can check your orders");
                 return;
