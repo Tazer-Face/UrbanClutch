@@ -2,9 +2,11 @@
 
 **A full-stack e-commerce MVP for a small clothing brand.**
 
-Live URL : https://urbanclutch.in/
-Github : https://github.com/Tazer-Face/UrbanClutch
-Instagram : https://www.instagram.com/urbanclutch_/
+- Live URL : https://urbanclutch.in/
+
+- Github : https://github.com/Tazer-Face/UrbanClutch
+
+- Instagram : https://www.instagram.com/urbanclutch_/
 
 
 
