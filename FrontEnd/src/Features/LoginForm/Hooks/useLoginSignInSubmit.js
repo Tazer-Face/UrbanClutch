@@ -10,10 +10,11 @@ export function useLoginSignInSubmit(){
     const {userData,setUserData} = useContext(ProductDataContext);
     const {viewProduct} = useProductNavigate();
 
-    async function onLoginSubmit(data,setLoginDisabled){
+    async function onLoginSubmit(data,setLoginDisabled,setPasswordError,setServerError){
 
     try{
-            
+            setServerError(false)
+            setPasswordError(false)
             await authSession;
             
             let res = await signInWithEmailAndPassword(auth , data.email , data.password);
@@ -54,9 +55,11 @@ export function useLoginSignInSubmit(){
             console.error(err?.response)
             if(!err?.response?.data.success){
                 //alert("Unable to validate user , please try and login again ") 
+                setServerError(true)
                 setLoginDisabled(false) 
                 return;
             }else if(err.code === "auth/invalid-credential"){
+                setPasswordError(true)
                 //alert("Wrong email or password")
             }
             
