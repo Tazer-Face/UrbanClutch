@@ -36,7 +36,7 @@ const NavToggle = () => {
             viewProduct("orders")
         }
         else{
-            alert("You need to login before you can check your orders , redirectin you to the Login page");
+            alert("You need to login before you can check your orders , redirecting you to the Login page");
             viewProduct("login")
         }
 
