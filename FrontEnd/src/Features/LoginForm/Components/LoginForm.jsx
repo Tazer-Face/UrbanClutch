@@ -75,13 +75,13 @@ const LoginForm = () => {
             onChange = {handleChange}
             />
             { serverError &&
-              <Form.Text className="text-muted text-danger">
-                  Unable to validate user , please try and login again 
+              <Form.Text className="text-muted ">
+                  <p className="text-danger fw-bold">Unable to validate user , please try and login again </p>
               </Form.Text>
             }
-             { setPasswordError &&
-              <Form.Text className="text-muted text-danger">
-                  Wrong email or password
+             { passwordError &&
+              <Form.Text className="text-muted ">
+                  <p className="text-danger fw-bold">Wrong email or password</p>
               </Form.Text>
             }
             </Form.Group>

@@ -226,7 +226,9 @@
     height: auto;
 }
 
+.invertNavButton
 .carousel-control-prev-icon,
+.invertNavButton
 .carousel-control-next-icon {
     filter: invert(1);
 }

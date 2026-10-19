@@ -51,16 +51,13 @@ export function useLoginSignInSubmit(){
 
            
         }catch(err){
-            
-            console.error(err?.response)
-            if(!err?.response?.data.success){
-                //alert("Unable to validate user , please try and login again ") 
+
+            if(err?.response?.data?.success === false){ 
                 setServerError(true)
                 setLoginDisabled(false) 
                 return;
             }else if(err.code === "auth/invalid-credential"){
                 setPasswordError(true)
-                //alert("Wrong email or password")
             }
             
             setLoginDisabled(false)

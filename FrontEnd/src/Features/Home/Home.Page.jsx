@@ -22,18 +22,12 @@ const Home = () => {
   
   const carousel = [UrbanClutchLogo,Rexy3,Mazda3,Roxy6,Rexy4,Ferrari3,Roxy5]
   const {productData} = useContext(ProductDataContext)
-  const navigate = useNavigate();
 
   const {viewProduct} = useProductNavigate()
 
-  
-
-  function navigatePage(id){
-    navigate(`/viewProduct/${id}`);
-  }
   return (
     <>
-    <Container className='mt-2 custom-container'>
+    <Container className='mt-2 custom-container '>
       <ProductCarousel arr={carousel} cssClass="carousel-image-container-home"/>
       <div className="Title">
         <h3 className="my-4 mt-3 mt-sm-5 ">PRODUCTS</h3>

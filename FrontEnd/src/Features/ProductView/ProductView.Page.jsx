@@ -20,7 +20,7 @@ const ProductView = () => {
     <Container className="mb-4">
       { productData && productData.length > 0   ?
         <div className="row gx-5">
-          <div className="col-12 col-xl-8 mt-3">
+          <div className="col-12 col-xl-8 mt-3 invertNavButton">
             <ProductCarousel  arr={curProducData.productCarasoleImage} cssClass="carousel-image-container" />
           </div>
           <ProductDetails curProducData={curProducData}/>
