@@ -4,6 +4,7 @@ import { ProductDataContext } from "../../App/Providers/ProductDataContext";
 import { useContext, useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { useProductNavigate } from '../Hooks/useProductNavigate';
+import { useLocation } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 
 
@@ -36,6 +37,12 @@ const NavToggle = () => {
             viewProduct("orders")
         }
         else{
+            const location = useLocation();
+            if(location.pathname === "/login"){
+                alert("You need to login before you can check your orders");
+                return;
+            }
+  
             alert("You need to login before you can check your orders , redirecting you to the Login page");
             viewProduct("login")
         }
