@@ -51,10 +51,10 @@ const NavToggle = () => {
                 
                 
                 <Dropdown.Menu>
-                    <Dropdown.Item  onClick={handleUserReq}>{loginState}</Dropdown.Item>
                     <Dropdown.Item  onClick={()=>{viewProduct("/")}}>HOME</Dropdown.Item>
                     <Dropdown.Item  onClick={()=>{viewProduct("cart")}}>CART</Dropdown.Item>
                     <Dropdown.Item  onClick={()=>{viewProduct("orders")}}>ORDERS</Dropdown.Item>
+                    <Dropdown.Item  onClick={handleUserReq}>{loginState}</Dropdown.Item>
                 </Dropdown.Menu>
 
             </Dropdown>

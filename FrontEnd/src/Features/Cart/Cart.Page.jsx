@@ -74,7 +74,7 @@ const Cart = () => {
           <Button className="w-50 w-md-100 cartAddPayBtn" onClick={addressOrLogin} >
             CONTINUE
           </Button>
-        </div> : <h3>YOUR BAG IS EMPTY : /</h3>
+        </div> : <h3>YOUR BAG IS EMPTY</h3>
         }
         {/* <button onClick={checkUpdate}>Test</button> */}
         

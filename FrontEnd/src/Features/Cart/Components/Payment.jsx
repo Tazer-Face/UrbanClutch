@@ -132,7 +132,7 @@ const Payment = () => {
         </div> 
          : 
         <div className="d-flex flex-column align-items-center justify-items-center mt-5">
-          <h3>YOUR BAG IS EMPTY : /</h3>
+          <h3>YOUR BAG IS EMPTY</h3>
         </div>
       }
     </Container>

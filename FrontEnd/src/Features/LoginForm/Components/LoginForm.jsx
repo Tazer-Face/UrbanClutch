@@ -10,12 +10,14 @@ const LoginForm = () => {
     const {viewProduct} = useProductNavigate();
     const [data,setData] = useState({email :"",password : ""})
     const [disableLogin,setDisableLogin] = useState(false)
+    const [passwordError,setPasswordError] = useState(false)
+    const [serverError,setServerError] = useState(false)
     const {onLoginSubmit} = useLoginSignInSubmit()
 
     function handleSubmit(e){
         e.preventDefault()
         setDisableLogin(true)
-        onLoginSubmit(data,setDisableLogin)
+        onLoginSubmit(data,setDisableLogin,setPasswordError,setServerError)
     }
 
     function handleChange(e){
@@ -65,13 +67,23 @@ const LoginForm = () => {
             <Form.Group className="mb-3" controlId="userPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control 
-            type="password" 
+            type="text" 
             placeholder="Password" 
             name = "password"
             value = {data.password}
             required
             onChange = {handleChange}
             />
+            { serverError &&
+              <Form.Text className="text-muted text-danger">
+                  Unable to validate user , please try and login again 
+              </Form.Text>
+            }
+             { setPasswordError &&
+              <Form.Text className="text-muted text-danger">
+                  Wrong email or password
+              </Form.Text>
+            }
             </Form.Group>
             
             <div className="d-flex align-items-center justify-content-between w-100 gap-5">

@@ -38,7 +38,7 @@ export function useLoginSignInSubmit(){
             // )
 
             if(result.data.success){
-                alert("Login successful , redirecting you to your cart ")
+                alert("Login successful , redirecting you to the home page")
             }
 
             setLoginDisabled(false)
@@ -46,19 +46,18 @@ export function useLoginSignInSubmit(){
             setUserData(prev =>({...prev, cart:(result?.data?.data?.cart|| {}),userDetails : result?.data?.data?.UserData ,
                 userId :result?.data?.data?.FirebaseUid ,userOrders : (result?.data?.data?.userOrders || {})}))
 
-            viewProduct("cart")
+            viewProduct("/")
 
            
         }catch(err){
             
             console.error(err?.response)
             if(!err?.response?.data.success){
-                alert("Unable to validate user , please try and login again ") 
+                //alert("Unable to validate user , please try and login again ") 
                 setLoginDisabled(false) 
                 return;
-            }else{
-                alert("Wrong email or password")
-    
+            }else if(err.code === "auth/invalid-credential"){
+                //alert("Wrong email or password")
             }
             
             setLoginDisabled(false)
